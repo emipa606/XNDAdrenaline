@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <AdrenalineRush.label>adrenaline rush</AdrenalineRush.label>
+  <AdrenalineRush.stages.0.label>negligible adrenaline rush</AdrenalineRush.stages.0.label>
+  <AdrenalineRush.stages.1.label>slight adrenaline rush</AdrenalineRush.stages.1.label>
+  <AdrenalineRush.stages.1.description>My heart's starting to get pumping and I'm raring to go.</AdrenalineRush.stages.1.description>
+  <AdrenalineRush.stages.2.label>moderate adrenaline rush</AdrenalineRush.stages.2.label>
+  <AdrenalineRush.stages.2.description>This is some good action right here, give me more!</AdrenalineRush.stages.2.description>
+  <AdrenalineRush.stages.3.label>intense adrenaline rush</AdrenalineRush.stages.3.label>
+  <AdrenalineRush.stages.3.description>This action is intense! I can feel my hands shaking and blood rushing through my head!</AdrenalineRush.stages.3.description>
+  <AdrenalineRush.stages.4.label>extreme adrenaline rush</AdrenalineRush.stages.4.label>
+  <AdrenalineRush.stages.4.description>I feel unstoppable! My heart is pumping so much that it feels like it could explode at any moment!</AdrenalineRush.stages.4.description>
+
+
+</LanguageData>

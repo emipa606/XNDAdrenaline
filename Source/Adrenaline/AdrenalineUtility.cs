@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using UnityEngine;
 using Verse;
 using Verse.AI;
 using RimWorld;
-using RimWorld.Planet;
-using System.Reflection;
-using System.Reflection.Emit;
 
 namespace Adrenaline
 {
@@ -62,6 +58,11 @@ namespace Adrenaline
             // Pawn
             if (t is Pawn p)
             {
+                CompCanBeDormant comp = p.GetComp<CompCanBeDormant>();
+                if (comp != null && !comp.Awake)
+                {
+                    return false;
+                }
                 return !p.Downed && (p.HostileTo(pawn) || pawn.InCombatWith(p));
             }
 
