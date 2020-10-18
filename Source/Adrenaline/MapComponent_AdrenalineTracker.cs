@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using UnityEngine;
 using Verse;
-using Verse.AI;
-using RimWorld;
-using RimWorld.Planet;
 
 namespace Adrenaline
 {
@@ -61,7 +55,7 @@ namespace Adrenaline
                     TryAddToCache(thing);
         }
 
-        private HashSet<Thing> cachedPotentialHostileThings = new HashSet<Thing>();
+        private readonly HashSet<Thing> cachedPotentialHostileThings = new HashSet<Thing>();
 
         public HashSet<Thing> allPotentialHostileThings = new HashSet<Thing>();
 

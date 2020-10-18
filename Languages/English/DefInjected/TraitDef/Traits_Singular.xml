@@ -1,11 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
-  <AdrenalineJunkie.degreeDatas.0.label>adrenaline junkie</AdrenalineJunkie.degreeDatas.0.label>
-  <AdrenalineJunkie.degreeDatas.0.description>{PAWN_nameDef} lives for the thrill of the action. {PAWN_pronoun} gets a rush from the adrenaline that flows throughout {PAWN_possessive} veins.</AdrenalineJunkie.degreeDatas.0.description>
-
-  <CoolHeaded.degreeDatas.0.label>cool-headed</CoolHeaded.degreeDatas.0.label>
-  <CoolHeaded.degreeDatas.0.description>{PAWN_nameDef} tends to keep calm in heated situations and generally doesn't get an adrenaline rush from them.</CoolHeaded.degreeDatas.0.description>
-
+  <!--<AdrenalineJunkie.degreeDatas.0.label>adrenaline junkie</AdrenalineJunkie.degreeDatas.0.label>-->
+  <!--<AdrenalineJunkie.degreeDatas.0.description>{PAWN_nameDef} lives for the thrill of the action. {PAWN_pronoun} gets a rush from the adrenaline that flows throughout {PAWN_possessive} veins.</AdrenalineJunkie.degreeDatas.0.description>-->
+  <!--<CoolHeaded.degreeDatas.0.label>cool-headed</CoolHeaded.degreeDatas.0.label>-->
+  <!--<CoolHeaded.degreeDatas.0.description>{PAWN_nameDef} tends to keep calm in heated situations and generally doesn't get an adrenaline rush from them.</CoolHeaded.degreeDatas.0.description>-->
 
 </LanguageData>

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using System.Text;
 using Verse;
-using Verse.AI;
 using RimWorld;
-using RimWorld.Planet;
 
 namespace Adrenaline
 {
@@ -16,8 +10,7 @@ namespace Adrenaline
 
         public override bool ShouldShowFor(StatRequest req)
         {
-            var tDef = req.Def as ThingDef;
-            return base.ShouldShowFor(req) && tDef != null && tDef.CanGetAdrenaline();
+            return base.ShouldShowFor(req) && req.Def is ThingDef tDef && tDef.CanGetAdrenaline();
         }
 
         public override void FinalizeValue(StatRequest req, ref float val, bool applyPostProcess)

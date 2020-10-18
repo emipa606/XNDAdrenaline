@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using Verse;
-using Verse.AI;
 using RimWorld;
-using RimWorld.Planet;
 
 namespace Adrenaline
 {
@@ -61,11 +55,11 @@ namespace Adrenaline
 
         public HediffDef hediffDef;
 
-        private float severity = -1;
+        private readonly float severity = -1;
 
-        private bool divideByBodySize;
+        private readonly bool divideByBodySize;
 
-        private int adrenalineHediffDurationOffset;
+        private readonly int adrenalineHediffDurationOffset;
 
     }
     // Okay, you got me... :(

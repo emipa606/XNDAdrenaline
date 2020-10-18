@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using System.Linq;
 using Verse;
-using Verse.AI;
 using RimWorld;
-using RimWorld.Planet;
 
 namespace Adrenaline
 {
@@ -52,8 +46,7 @@ namespace Adrenaline
                     if (adrenalineTracker.CanProduceAdrenaline)
                     {
                         // Hediff isn't an injury, is a scar or the pawn is dead
-                        var injury = hediff as Hediff_Injury;
-                        if (injury == null || injury.IsPermanent() || pawn.Dead)
+                        if (!(hediff is Hediff_Injury injury) || injury.IsPermanent() || pawn.Dead)
                             return false;
 
                         // Try to add target severity based on the pain caused by the injury

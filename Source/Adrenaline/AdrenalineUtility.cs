@@ -67,26 +67,23 @@ namespace Adrenaline
             }
 
             // Turret (if pawn is not an animal)
-            if (!pawn.RaceProps.Animal)
+            if (!pawn.RaceProps.Animal && t is Building_Turret turret)
             {
-                if (t is Building_Turret turret)
-                {
-                    // Has no power
-                    var powerComp = turret.GetComp<CompPowerTrader>();
-                    if (powerComp != null && !powerComp.PowerOn)
-                        return false;
+                // Has no power
+                var powerComp = turret.GetComp<CompPowerTrader>();
+                if (powerComp != null && !powerComp.PowerOn)
+                    return false;
 
-                    // Unmanned
-                    var mannableComp = turret.GetComp<CompMannable>();
-                    if (mannableComp != null && !mannableComp.MannedNow)
-                        return false;
+                // Unmanned
+                var mannableComp = turret.GetComp<CompMannable>();
+                if (mannableComp != null && !mannableComp.MannedNow)
+                    return false;
 
-                    // No verb (Misc. TurretBases compatibility)
-                    if (turret.CurrentEffectiveVerb == null)
-                        return false;
+                // No verb (Misc. TurretBases compatibility)
+                if (turret.CurrentEffectiveVerb == null)
+                    return false;
 
-                    return turret.CurrentEffectiveVerb.Available() && turret.HostileTo(pawn);
-                }
+                return turret.CurrentEffectiveVerb.Available() && turret.HostileTo(pawn);
             }
 
             return false;

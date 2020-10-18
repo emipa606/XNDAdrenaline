@@ -16,12 +16,7 @@ namespace Adrenaline
 
             public static bool Prefix(TraitSet __instance, Pawn ___pawn, Trait trait)
             {
-                // If the trait in question is adrenaline-related and the pawn can't gain adrenaline, reject it
-                Predicate<StatModifier> adrenalineStatModPredicate = (s) => s.stat == A_StatDefOf.AdrenalineProduction;
-                if ((trait.def == A_TraitDefOf.AdrenalineJunkie || AffectsAdrenalineProduction(trait)) && !___pawn.CanGetAdrenaline())
-                    return false;
-
-                return true;
+                return trait.def != A_TraitDefOf.AdrenalineJunkie && !AffectsAdrenalineProduction(trait) || ___pawn.CanGetAdrenaline();
             }
 
         }
