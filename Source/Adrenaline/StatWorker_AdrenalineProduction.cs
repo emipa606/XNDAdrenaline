@@ -1,13 +1,11 @@
 ﻿using System.Text;
-using Verse;
 using RimWorld;
+using Verse;
 
 namespace Adrenaline
 {
-
     public class StatWorker_AdrenalineProduction : StatWorker
     {
-
         public override bool ShouldShowFor(StatRequest req)
         {
             return base.ShouldShowFor(req) && req.Def is ThingDef tDef && tDef.CanGetAdrenaline();
@@ -19,11 +17,14 @@ namespace Adrenaline
             base.FinalizeValue(req, ref val, applyPostProcess);
         }
 
-        public override string GetExplanationFinalizePart(StatRequest req, ToStringNumberSense numberSense, float finalVal)
+        public override string GetExplanationFinalizePart(StatRequest req, ToStringNumberSense numberSense,
+            float finalVal)
         {
             var explanationBuilder = new StringBuilder();
-            explanationBuilder.AppendLine($"{req.Def.LabelCap}: {ValueFactorFromRace(req.Def).ToStringByStyle(stat.toStringStyle, ToStringNumberSense.Factor)}");
-            explanationBuilder.AppendLine($"{"Adrenaline.StatsReport_RecentlyProducedAdrenaline".Translate()}: {ValueFactorFromTracker(req.Thing).ToStringByStyle(stat.toStringStyle, ToStringNumberSense.Factor)}");
+            explanationBuilder.AppendLine(
+                $"{req.Def.LabelCap}: {ValueFactorFromRace(req.Def).ToStringByStyle(stat.toStringStyle, ToStringNumberSense.Factor)}");
+            explanationBuilder.AppendLine(
+                $"{"Adrenaline.StatsReport_RecentlyProducedAdrenaline".Translate()}: {ValueFactorFromTracker(req.Thing).ToStringByStyle(stat.toStringStyle, ToStringNumberSense.Factor)}");
             explanationBuilder.AppendLine();
             explanationBuilder.AppendLine(base.GetExplanationFinalizePart(req, numberSense, finalVal));
             return explanationBuilder.ToString();
@@ -39,16 +40,17 @@ namespace Adrenaline
         {
             var adrenalineTracker = thing.TryGetComp<CompAdrenalineTracker>();
             if (adrenalineTracker != null)
+            {
                 return adrenalineTracker.AdrenalineProductionFactor;
+            }
 
             // Null adrenaline tracker
-            else
+            if (Current.ProgramState == ProgramState.Playing)
             {
                 Log.Error($"Tried to get factor from CompAdrenalineTracker for {thing} but adrenalineTracker is null");
-                return 1;
             }
+
+            return 1;
         }
-
     }
-
 }
