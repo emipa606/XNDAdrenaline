@@ -4,12 +4,15 @@ using Verse;
 
 namespace Adrenaline
 {
-
     public class MapComponent_AdrenalineTracker : MapComponent
     {
+        private const int AllPotentialHostileThingsUpdateInterval = 120;
+
+        private readonly HashSet<Thing> cachedPotentialHostileThings = new HashSet<Thing>();
+
+        public HashSet<Thing> allPotentialHostileThings = new HashSet<Thing>();
 
         private bool cacheSet;
-        private const int AllPotentialHostileThingsUpdateInterval = 120;
 
         public MapComponent_AdrenalineTracker(Map map) : base(map)
         {
@@ -27,7 +30,8 @@ namespace Adrenaline
 
             if (Find.TickManager.TicksGame % AllPotentialHostileThingsUpdateInterval == 0)
             {
-                allPotentialHostileThings = new HashSet<Thing>(map.mapPawns.AllPawnsSpawned.ToArray().Concat(cachedPotentialHostileThings));
+                allPotentialHostileThings =
+                    new HashSet<Thing>(map.mapPawns.AllPawnsSpawned.ToArray().Concat(cachedPotentialHostileThings));
             }
         }
 
@@ -36,7 +40,7 @@ namespace Adrenaline
             if (!cachedPotentialHostileThings.Contains(t))
             {
                 cachedPotentialHostileThings.Add(t);
-            }    
+            }
         }
 
         public void TryRemoveFromCache(Thing t)
@@ -44,22 +48,19 @@ namespace Adrenaline
             if (cachedPotentialHostileThings.Contains(t))
             {
                 cachedPotentialHostileThings.Remove(t);
-            } 
+            }
         }
 
         private void ResetCachedPotentialHostileThings()
         {
             cachedPotentialHostileThings.Clear();
             foreach (var thing in map.listerThings.AllThings)
+            {
                 if (thing.IsPotentialPerceivableThreat())
+                {
                     TryAddToCache(thing);
+                }
+            }
         }
-
-        private readonly HashSet<Thing> cachedPotentialHostileThings = new HashSet<Thing>();
-
-        public HashSet<Thing> allPotentialHostileThings = new HashSet<Thing>();
-
-
     }
-
 }

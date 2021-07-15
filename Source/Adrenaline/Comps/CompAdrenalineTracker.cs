@@ -1,31 +1,27 @@
-﻿using UnityEngine;
+﻿using RimWorld;
+using UnityEngine;
 using Verse;
-using RimWorld;
 
 namespace Adrenaline
 {
-
     public class CompAdrenalineTracker : ThingComp
     {
-
         private const int UpdateIntervalTicks = 20;
         private const float ProductionFactorThreshold = 0.2f;
 
         private float adrenalineProduced;
 
-        private Pawn Pawn => (Pawn)parent;
+        private Pawn Pawn => (Pawn) parent;
 
-        private ExtendedRaceProperties ExtraRaceProps => parent.def.GetModExtension<ExtendedRaceProperties>() ?? ExtendedRaceProperties.defaultValues;
+        private ExtendedRaceProperties ExtraRaceProps => parent.def.GetModExtension<ExtendedRaceProperties>() ??
+                                                         ExtendedRaceProperties.defaultValues;
 
-        private CompProperties_AdrenalineTracker Props => (CompProperties_AdrenalineTracker)props;
+        private CompProperties_AdrenalineTracker Props => (CompProperties_AdrenalineTracker) props;
 
         public float AdrenalineProduced
         {
             get => adrenalineProduced;
-            set
-            {
-                adrenalineProduced = Mathf.Max(value, 0);
-            }
+            set => adrenalineProduced = Mathf.Max(value, 0);
         }
 
         public float AdrenalineProductionFactor
@@ -33,18 +29,26 @@ namespace Adrenaline
             get
             {
                 if (Pawn.Downed && !AdrenalineSettings.affectDownedPawns)
+                {
                     return 0;
-                return Mathf.Max(1 - AdrenalineProduced / Props.adrenalineProductionCapacity, 0);
+                }
+
+                return Mathf.Max(1 - (AdrenalineProduced / Props.adrenalineProductionCapacity), 0);
             }
         }
 
-        public bool CanProduceAdrenaline => parent.GetStatValue(A_StatDefOf.AdrenalineProduction) > ProductionFactorThreshold;
+        public bool CanProduceAdrenaline =>
+            parent.GetStatValue(A_StatDefOf.AdrenalineProduction) > ProductionFactorThreshold;
 
         public override void CompTick()
         {
             // If the pawn doesn't have an adrenaline rush, reduce the cumulative adrenaline rush severity
-            if (parent.IsHashIntervalTick(UpdateIntervalTicks) && !Pawn.health.hediffSet.HasHediff(ExtraRaceProps.adrenalineRushHediff))
-                AdrenalineProduced -= Props.adrenalineProductionRecoveryPerDay / GenDate.TicksPerDay * UpdateIntervalTicks;
+            if (parent.IsHashIntervalTick(UpdateIntervalTicks) &&
+                !Pawn.health.hediffSet.HasHediff(ExtraRaceProps.adrenalineRushHediff))
+            {
+                AdrenalineProduced -=
+                    Props.adrenalineProductionRecoveryPerDay / GenDate.TicksPerDay * UpdateIntervalTicks;
+            }
 
             base.CompTick();
         }
@@ -55,8 +59,5 @@ namespace Adrenaline
 
             base.PostExposeData();
         }
-
-
     }
-
 }

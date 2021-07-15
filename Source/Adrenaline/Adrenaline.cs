@@ -1,12 +1,12 @@
-﻿using UnityEngine;
+﻿using HarmonyLib;
+using UnityEngine;
 using Verse;
-using HarmonyLib;
 
 namespace Adrenaline
 {
-
     public class Adrenaline : Mod
     {
+        public static Harmony HarmonyInstance;
 
         public Adrenaline(ModContentPack content) : base(content)
         {
@@ -14,15 +14,14 @@ namespace Adrenaline
             HarmonyInstance = new Harmony("XeoNovaDan.Adrenaline");
         }
 
-        public static Harmony HarmonyInstance;
-
-        public override string SettingsCategory() => "Adrenaline.SettingsCategory".Translate();
+        public override string SettingsCategory()
+        {
+            return "Adrenaline.SettingsCategory".Translate();
+        }
 
         public override void DoSettingsWindowContents(Rect inRect)
         {
             GetSettings<AdrenalineSettings>().DoWindowContents(inRect);
         }
-
     }
-
 }

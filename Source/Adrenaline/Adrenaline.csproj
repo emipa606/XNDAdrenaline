@@ -1,82 +1,24 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6947CF72-9BCF-4DD2-869E-82BD61796450}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Adrenaline</RootNamespace>
-    <AssemblyName>Adrenaline</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
+    <OutputPath>..\..\1.3\Assemblies</OutputPath>
+    <TargetFramework>net472</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <DebugType>None</DebugType>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>false</DebugSymbols>
-    <DebugType>none</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\..\1.2\Assemblies\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="AdrenalineSettings.cs" />
-    <Compile Include="DefOf\A_StatDefOf.cs" />
-    <Compile Include="HarmonyPatches\Patch_HealthUtility.cs" />
-    <Compile Include="Adrenaline.cs" />
-    <Compile Include="StatWorker_AdrenalineProduction.cs" />
-    <Compile Include="Comps\CompProperties_AdrenalineTracker.cs" />
-    <Compile Include="Comps\CompAdrenalineTracker.cs" />
-    <Compile Include="DefModExtensions\AdrenalineCrashProperties.cs" />
-    <Compile Include="DefModExtensions\ExtraHediffStageProperties.cs" />
-    <Compile Include="DefModExtensions\AdrenalineRushProperties.cs" />
-    <Compile Include="DefModExtensions\ThingDefExtension.cs" />
-    <Compile Include="DefModExtensions\HediffDefExtension.cs" />
-    <Compile Include="DefOf\A_ConceptDefOf.cs" />
-    <Compile Include="HarmonyPatches\Patch_Pawn_MindState.cs" />
-    <Compile Include="HarmonyPatches\Patch_PawnInventoryGenerator.cs" />
-    <Compile Include="HarmonyPatches\Patch_PawnUtility.cs" />
-    <Compile Include="StaticConstructorClass.cs" />
-    <Compile Include="Hediffs\Hediff_AdrenalineRush.cs" />
-    <Compile Include="Hediffs\Hediff_AdrenalineCrash.cs" />
-    <Compile Include="IngestionOutcomeDoer_Adrenaline.cs" />
-    <Compile Include="Hediffs\Hediff_Adrenaline.cs" />
-    <Compile Include="DefModExtensions\ExtraRaceProperties.cs" />
-    <Compile Include="HarmonyPatches\Patch_Pawn.cs" />
-    <Compile Include="DefOf\A_HediffDefOf.cs" />
-    <Compile Include="DefOf\A_TraitDefOf.cs" />
-    <Compile Include="AdrenalineUtility.cs" />
-    <Compile Include="HarmonyPatches\Patch_VerbProperties.cs" />
-    <Compile Include="HarmonyPatches\Patch_TraitSet.cs" />
-    <Compile Include="HarmonyPatches\Patch_Thing.cs" />
-    <Compile Include="HarmonyPatches\HarmonyPatches.cs" />
-    <Compile Include="MapComponent_AdrenalineTracker.cs" />
-    <Compile Include="HediffGiver_Adrenaline.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">
-      <Version>1.2.2753</Version>
-<ExcludeAssets>runtime</ExcludeAssets>
+       <Version>*</Version> 
+      <!--<Version>1.3.3060-beta</Version>-->
+      <ExcludeAssets>runtime</ExcludeAssets>
+      <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Lib.Harmony">
-      <Version>2.0.2</Version>
-<ExcludeAssets>runtime</ExcludeAssets>
+      <Version>*</Version>
+      <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- 1.3.3060-beta -->
 </Project>
