@@ -1,15 +1,14 @@
-﻿namespace Adrenaline
+﻿namespace Adrenaline;
+
+public class AdrenalineCrashProperties
 {
-    public class AdrenalineCrashProperties
-    {
-        public float baseSeverityGainPerDay;
+    public float baseSeverityGainPerDay;
 
-        public float baseSeverityLossPerDay;
+    public float baseSeverityLossPerDay;
 
-        public int baseTicksAtPeakSeverityBeforeSeverityLoss;
+    public int baseTicksAtPeakSeverityBeforeSeverityLoss;
 
-        public int severityGainDelay;
+    public int severityGainDelay;
 
-        public float targetSeverityGainPerAdrenalineRushHediffSeverityPerHour;
-    }
+    public float targetSeverityGainPerAdrenalineRushHediffSeverityPerHour;
 }

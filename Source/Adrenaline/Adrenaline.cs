@@ -1,27 +1,30 @@
 ﻿using HarmonyLib;
+using Mlie;
 using UnityEngine;
 using Verse;
 
-namespace Adrenaline
+namespace Adrenaline;
+
+public class Adrenaline : Mod
 {
-    public class Adrenaline : Mod
+    public static Harmony HarmonyInstance;
+    public static string currentVersion;
+
+    public Adrenaline(ModContentPack content) : base(content)
     {
-        public static Harmony HarmonyInstance;
+        GetSettings<AdrenalineSettings>();
+        HarmonyInstance = new Harmony("XeoNovaDan.Adrenaline");
+        currentVersion =
+            VersionFromManifest.GetVersionFromModMetaData(ModLister.GetActiveModWithIdentifier("Mlie.XNDAdrenaline"));
+    }
 
-        public Adrenaline(ModContentPack content) : base(content)
-        {
-            GetSettings<AdrenalineSettings>();
-            HarmonyInstance = new Harmony("XeoNovaDan.Adrenaline");
-        }
+    public override string SettingsCategory()
+    {
+        return "Adrenaline.SettingsCategory".Translate();
+    }
 
-        public override string SettingsCategory()
-        {
-            return "Adrenaline.SettingsCategory".Translate();
-        }
-
-        public override void DoSettingsWindowContents(Rect inRect)
-        {
-            GetSettings<AdrenalineSettings>().DoWindowContents(inRect);
-        }
+    public override void DoSettingsWindowContents(Rect inRect)
+    {
+        GetSettings<AdrenalineSettings>().DoWindowContents(inRect);
     }
 }

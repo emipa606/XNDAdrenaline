@@ -1,10 +1,9 @@
 ﻿using RimWorld;
 
-namespace Adrenaline
+namespace Adrenaline;
+
+[DefOf]
+public static class A_StatDefOf
 {
-    [DefOf]
-    public static class A_StatDefOf
-    {
-        public static StatDef AdrenalineProduction;
-    }
+    public static StatDef AdrenalineProduction;
 }

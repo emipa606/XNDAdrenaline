@@ -1,10 +1,9 @@
 ﻿using RimWorld;
 
-namespace Adrenaline
+namespace Adrenaline;
+
+[DefOf]
+public static class A_ConceptDefOf
 {
-    [DefOf]
-    public static class A_ConceptDefOf
-    {
-        public static ConceptDef Adrenaline;
-    }
+    public static ConceptDef Adrenaline;
 }

@@ -5,6 +5,7 @@
   <!-- StatParts -->
   <Adrenaline.StatsReport_RecentlyProducedAdrenaline>Recent production</Adrenaline.StatsReport_RecentlyProducedAdrenaline>
   <!-- Settings -->
+  <Adrenaline.CurrentModVersion>Installed mod-version: {0}</Adrenaline.CurrentModVersion>
   <Adrenaline.SettingsCategory>Adrenaline</Adrenaline.SettingsCategory>
   <Adrenaline.AllowNaturalGain>Allow natural gain</Adrenaline.AllowNaturalGain>
   <Adrenaline.AllowNaturalGain_ToolTip>Determines whether or not pawns naturally gain adrenaline in combat or when taking damage.</Adrenaline.AllowNaturalGain_ToolTip>

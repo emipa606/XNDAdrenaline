@@ -1,10 +1,9 @@
 ﻿using RimWorld;
 
-namespace Adrenaline
+namespace Adrenaline;
+
+[DefOf]
+public static class A_TraitDefOf
 {
-    [DefOf]
-    public static class A_TraitDefOf
-    {
-        public static TraitDef AdrenalineJunkie;
-    }
+    public static TraitDef AdrenalineJunkie;
 }

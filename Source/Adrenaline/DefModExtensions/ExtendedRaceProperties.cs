@@ -2,64 +2,63 @@
 using System.Linq;
 using Verse;
 
-namespace Adrenaline
+namespace Adrenaline;
+
+public class ExtendedRaceProperties : DefModExtension
 {
-    public class ExtendedRaceProperties : DefModExtension
+    public static readonly ExtendedRaceProperties defaultValues = new ExtendedRaceProperties();
+
+    [Unsaved] private List<ThingDef> _relevantConsumables;
+
+    [Unsaved] private List<ThingDef> _relevantConsumablesDowned;
+
+    public HediffDef adrenalineCrashHediff = A_HediffDefOf.AdrenalineCrash;
+    public float adrenalineGainFactorArtificial = 1;
+    public float adrenalineGainFactorNatural = 1;
+    public float adrenalineLossFactor = 1;
+    public HediffDef adrenalineRushHediff = A_HediffDefOf.Adrenaline;
+
+    public bool HasAdrenaline => adrenalineRushHediff != null &&
+                                 (adrenalineGainFactorNatural > 0 || adrenalineGainFactorArtificial > 0);
+
+    public List<ThingDef> RelevantConsumables
     {
-        public static readonly ExtendedRaceProperties defaultValues = new ExtendedRaceProperties();
-
-        [Unsaved] private List<ThingDef> _relevantConsumables;
-
-        [Unsaved] private List<ThingDef> _relevantConsumablesDowned;
-
-        public HediffDef adrenalineCrashHediff = A_HediffDefOf.AdrenalineCrash;
-        public float adrenalineGainFactorArtificial = 1;
-        public float adrenalineGainFactorNatural = 1;
-        public float adrenalineLossFactor = 1;
-        public HediffDef adrenalineRushHediff = A_HediffDefOf.Adrenaline;
-
-        public bool HasAdrenaline => adrenalineRushHediff != null &&
-                                     (adrenalineGainFactorNatural > 0 || adrenalineGainFactorArtificial > 0);
-
-        public List<ThingDef> RelevantConsumables
+        get
         {
-            get
+            if (_relevantConsumables == null)
             {
-                if (_relevantConsumables == null)
-                {
-                    _relevantConsumables = DefDatabase<ThingDef>.AllDefs.Where(t =>
-                        t.IsDrug && t.ingestible.outcomeDoers is { } outcomeDoers &&
-                        outcomeDoers.Any(o =>
-                            o is IngestionOutcomeDoer_Adrenaline adrenalineOutcome &&
-                            adrenalineOutcome.hediffDef == adrenalineRushHediff)).ToList();
-                }
-
-                return _relevantConsumables;
+                _relevantConsumables = DefDatabase<ThingDef>.AllDefs.Where(t =>
+                    t.IsDrug && t.ingestible.outcomeDoers is { } outcomeDoers &&
+                    outcomeDoers.Any(o =>
+                        o is IngestionOutcomeDoer_Adrenaline adrenalineOutcome &&
+                        adrenalineOutcome.hediffDef == adrenalineRushHediff)).ToList();
             }
+
+            return _relevantConsumables;
         }
+    }
 
-        public List<ThingDef> RelevantConsumablesDowned
+    public List<ThingDef> RelevantConsumablesDowned
+    {
+        get
         {
-            get
+            if (_relevantConsumablesDowned == null)
             {
-                if (_relevantConsumablesDowned == null)
-                {
-                    _relevantConsumablesDowned = RelevantConsumables.Where(t =>
-                        (t.GetModExtension<ThingDefExtension>() ?? ThingDefExtension.defaultValues)
-                        .ingestibleWhenDowned).ToList();
-                }
-
-                return _relevantConsumablesDowned;
+                _relevantConsumablesDowned = RelevantConsumables.Where(t =>
+                    (t.GetModExtension<ThingDefExtension>() ?? ThingDefExtension.defaultValues)
+                    .ingestibleWhenDowned).ToList();
             }
+
+            return _relevantConsumablesDowned;
         }
+    }
 
-        public override IEnumerable<string> ConfigErrors()
+    public override IEnumerable<string> ConfigErrors()
+    {
+        // Has no adrenaline rush hediff but has adrenaline crash hediff
+        if (adrenalineRushHediff == null && adrenalineCrashHediff != null)
         {
-            // Has no adrenaline rush hediff but has adrenaline crash hediff
-            if (adrenalineRushHediff == null && adrenalineCrashHediff != null)
-            {
-                yield return $"Has null adrenalineRushHediff but has {adrenalineCrashHediff} adrenalineCrashHediff";
-            }
+            yield return $"Has null adrenalineRushHediff but has {adrenalineCrashHediff} adrenalineCrashHediff";
         }
     }
 }

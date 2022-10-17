@@ -1,9 +1,8 @@
-﻿namespace Adrenaline
-{
-    public class ExtraHediffStageProperties
-    {
-        public static readonly ExtraHediffStageProperties defaultValues = new ExtraHediffStageProperties();
+﻿namespace Adrenaline;
 
-        public float meleeDamageFactor = 1;
-    }
+public class ExtraHediffStageProperties
+{
+    public static readonly ExtraHediffStageProperties defaultValues = new ExtraHediffStageProperties();
+
+    public float meleeDamageFactor = 1;
 }
