@@ -13,15 +13,14 @@ public static class AdrenalineUtility
     private const float BasePerceivedThreatDistance = 50;
 
     private static readonly SimpleCurve PointsPerColonistByWealthCurve =
-        new SimpleCurve // Copy-pasted from StorytellerUtility
-        {
-            new CurvePoint(0f, 15f),
-            new CurvePoint(10000f, 15f),
-            new CurvePoint(400000f, 140f),
-            new CurvePoint(1000000f, 200f)
-        };
+    [
+        new CurvePoint(0f, 15f),
+        new CurvePoint(10000f, 15f),
+        new CurvePoint(400000f, 140f),
+        new CurvePoint(1000000f, 200f)
+    ];
 
-    public static Dictionary<ThingDef, Texture2D> adrenalineGizmoIcons = new Dictionary<ThingDef, Texture2D>();
+    public static readonly Dictionary<ThingDef, Texture2D> adrenalineGizmoIcons = new Dictionary<ThingDef, Texture2D>();
 
     public static IEnumerable<Thing> GetPerceivedThreatsFor(Pawn pawn)
     {
@@ -223,7 +222,7 @@ public static class AdrenalineUtility
 
     public static bool AnyNearbyAdrenaline(Thing t, List<ThingDef> aDefs, out List<Thing> adrenalineThings)
     {
-        adrenalineThings = new List<Thing>();
+        adrenalineThings = [];
 
         if (t.Map == null)
         {
@@ -253,6 +252,6 @@ public static class AdrenalineUtility
 
     public static bool AnyNearbyAdrenaline(Thing t, ThingDef aDef, out List<Thing> adrenalineThings)
     {
-        return AnyNearbyAdrenaline(t, new List<ThingDef> { aDef }, out adrenalineThings);
+        return AnyNearbyAdrenaline(t, [aDef], out adrenalineThings);
     }
 }

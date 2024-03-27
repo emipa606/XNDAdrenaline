@@ -61,7 +61,7 @@ public class HediffGiver_Adrenaline : HediffGiver
         }
 
         // Hediff isn't an injury, is a scar or the pawn is dead
-        if (!(hediff is Hediff_Injury injury) || injury.IsPermanent() || pawn.Dead)
+        if (hediff is not Hediff_Injury injury || injury.IsPermanent() || pawn.Dead)
         {
             return false;
         }

@@ -7,7 +7,7 @@ public static class Patch_VerbProperties
 {
     [HarmonyPatch(typeof(VerbProperties))]
     [HarmonyPatch(nameof(VerbProperties.GetDamageFactorFor))]
-    [HarmonyPatch(new[] { typeof(Tool), typeof(Pawn), typeof(HediffComp_VerbGiver) })]
+    [HarmonyPatch([typeof(Tool), typeof(Pawn), typeof(HediffComp_VerbGiver)])]
     public static class Patch_GetDamageFactorFor
     {
         public static void Postfix(Pawn attacker, ref float __result)

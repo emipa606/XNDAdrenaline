@@ -8,9 +8,9 @@ public class MapComponent_AdrenalineTracker : MapComponent
 {
     private const int AllPotentialHostileThingsUpdateInterval = 120;
 
-    private readonly HashSet<Thing> cachedPotentialHostileThings = new HashSet<Thing>();
+    private readonly HashSet<Thing> cachedPotentialHostileThings = [];
 
-    public HashSet<Thing> allPotentialHostileThings = new HashSet<Thing>();
+    public HashSet<Thing> allPotentialHostileThings = [];
 
     private bool cacheSet;
 
@@ -31,16 +31,13 @@ public class MapComponent_AdrenalineTracker : MapComponent
         if (Find.TickManager.TicksGame % AllPotentialHostileThingsUpdateInterval == 0)
         {
             allPotentialHostileThings =
-                new HashSet<Thing>(map.mapPawns.AllPawnsSpawned.ToArray().Concat(cachedPotentialHostileThings));
+                [..map.mapPawns.AllPawnsSpawned.ToArray().Concat(cachedPotentialHostileThings)];
         }
     }
 
     public void TryAddToCache(Thing t)
     {
-        if (!cachedPotentialHostileThings.Contains(t))
-        {
-            cachedPotentialHostileThings.Add(t);
-        }
+        cachedPotentialHostileThings.Add(t);
     }
 
     public void TryRemoveFromCache(Thing t)

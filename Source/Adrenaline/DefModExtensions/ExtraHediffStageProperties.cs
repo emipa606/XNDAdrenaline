@@ -4,5 +4,5 @@ public class ExtraHediffStageProperties
 {
     public static readonly ExtraHediffStageProperties defaultValues = new ExtraHediffStageProperties();
 
-    public float meleeDamageFactor = 1;
+    public readonly float meleeDamageFactor = 1;
 }

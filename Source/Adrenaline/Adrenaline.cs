@@ -15,7 +15,7 @@ public class Adrenaline : Mod
         GetSettings<AdrenalineSettings>();
         HarmonyInstance = new Harmony("XeoNovaDan.Adrenaline");
         currentVersion =
-            VersionFromManifest.GetVersionFromModMetaData(ModLister.GetActiveModWithIdentifier("Mlie.XNDAdrenaline"));
+            VersionFromManifest.GetVersionFromModMetaData(content.ModMetaData);
     }
 
     public override string SettingsCategory()

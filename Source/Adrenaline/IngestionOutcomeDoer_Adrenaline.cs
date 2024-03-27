@@ -15,7 +15,7 @@ public class IngestionOutcomeDoer_Adrenaline : IngestionOutcomeDoer
     public HediffDef hediffDef;
 
     // I definitely, definitely did not copy and paste a decompiled IngestionOutcomeDoer_GiveHediff and adapt it. Why would I ever do that?
-    protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
+    protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested, int ingestedCount)
     {
         // Check if the ingesting pawn can actually get adrenaline
         if (!pawn.CanGetAdrenaline())

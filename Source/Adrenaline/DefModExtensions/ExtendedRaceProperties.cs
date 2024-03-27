@@ -8,15 +8,15 @@ public class ExtendedRaceProperties : DefModExtension
 {
     public static readonly ExtendedRaceProperties defaultValues = new ExtendedRaceProperties();
 
+    public readonly HediffDef adrenalineCrashHediff = A_HediffDefOf.AdrenalineCrash;
+    public readonly float adrenalineGainFactorArtificial = 1;
+    public readonly float adrenalineGainFactorNatural = 1;
+    public readonly float adrenalineLossFactor = 1;
+    public readonly HediffDef adrenalineRushHediff = A_HediffDefOf.Adrenaline;
+
     [Unsaved] private List<ThingDef> _relevantConsumables;
 
     [Unsaved] private List<ThingDef> _relevantConsumablesDowned;
-
-    public HediffDef adrenalineCrashHediff = A_HediffDefOf.AdrenalineCrash;
-    public float adrenalineGainFactorArtificial = 1;
-    public float adrenalineGainFactorNatural = 1;
-    public float adrenalineLossFactor = 1;
-    public HediffDef adrenalineRushHediff = A_HediffDefOf.Adrenaline;
 
     public bool HasAdrenaline => adrenalineRushHediff != null &&
                                  (adrenalineGainFactorNatural > 0 || adrenalineGainFactorArtificial > 0);

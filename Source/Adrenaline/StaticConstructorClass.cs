@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Verse;
 
 namespace Adrenaline;
@@ -16,7 +15,7 @@ public static class StaticConstructorClass
             {
                 if (tDef.comps == null)
                 {
-                    tDef.comps = new List<CompProperties>();
+                    tDef.comps = [];
                 }
 
                 if (!tDef.comps.Any(c => c.GetType() == typeof(CompProperties_AdrenalineTracker)))
