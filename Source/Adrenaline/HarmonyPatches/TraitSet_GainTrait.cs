@@ -4,7 +4,8 @@ using Verse;
 
 namespace Adrenaline;
 
-public static class Patch_TraitSet
+[HarmonyPatch(typeof(TraitSet), nameof(TraitSet.GainTrait))]
+public static class TraitSet_GainTrait
 {
     private static bool AffectsAdrenalineProduction(Trait trait)
     {
@@ -45,14 +46,9 @@ public static class Patch_TraitSet
         return false;
     }
 
-    [HarmonyPatch(typeof(TraitSet))]
-    [HarmonyPatch(nameof(TraitSet.GainTrait))]
-    public static class Patch_GainTrait
+    public static bool Prefix(Pawn ___pawn, Trait trait)
     {
-        public static bool Prefix(TraitSet __instance, Pawn ___pawn, Trait trait)
-        {
-            return trait.def != A_TraitDefOf.AdrenalineJunkie && !AffectsAdrenalineProduction(trait) ||
-                   ___pawn.CanGetAdrenaline();
-        }
+        return trait.def != A_TraitDefOf.AdrenalineJunkie && !AffectsAdrenalineProduction(trait) ||
+               ___pawn.CanGetAdrenaline();
     }
 }

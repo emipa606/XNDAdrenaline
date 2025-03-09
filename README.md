@@ -60,6 +60,6 @@ Various members of the discord and forums for playtesting and contributing their
 -  If you have the solution for a problem, please post it to the GitHub repository.
 -  Use [RimSort](https://github.com/RimSort/RimSort/releases/latest) to sort your mods
 
+ 
 
-
-[![Image](https://img.shields.io/github/v/release/emipa606/XNDAdrenaline?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2037728879)
+[![Image](https://img.shields.io/github/v/release/emipa606/XNDAdrenaline?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2037728879) | tags:  enhancements,  drug
