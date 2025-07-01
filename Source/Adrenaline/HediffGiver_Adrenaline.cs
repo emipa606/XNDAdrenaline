@@ -20,8 +20,8 @@ public class HediffGiver_Adrenaline : HediffGiver
         var hasRush = pawn.health.hediffSet.HasHediff(extraRaceProps.adrenalineRushHediff);
 
         // If the pawn can produce adrenaline and doesn't already have an adrenaline rush, add adrenaline rush
-        if (AdrenalineSettings.allowNaturalGain &&
-            (AdrenalineSettings.affectAnimals || !pawn.RaceProps.Animal) &&
+        if (AdrenalineSettings.AllowNaturalGain &&
+            (AdrenalineSettings.AffectAnimals || !pawn.RaceProps.Animal) &&
             adrenalineTracker.CanProduceAdrenaline && !hasRush &&
             AdrenalineUtility.GetPerceivedThreatsFor(pawn).Any())
         {
@@ -30,7 +30,7 @@ public class HediffGiver_Adrenaline : HediffGiver
         }
 
         // Otherwise if they have an adrenaline rush and don't have an adrenaline crash hediff, add an adrenaline crash hediff
-        else if (AdrenalineSettings.adrenalineCrashes && hasRush &&
+        else if (AdrenalineSettings.AdrenalineCrashes && hasRush &&
                  extraRaceProps.adrenalineCrashHediff != null &&
                  !pawn.health.hediffSet.HasHediff(extraRaceProps.adrenalineCrashHediff))
         {
@@ -42,7 +42,7 @@ public class HediffGiver_Adrenaline : HediffGiver
 
     public override bool OnHediffAdded(Pawn pawn, Hediff hediff)
     {
-        if (!AdrenalineSettings.allowNaturalGain || !AdrenalineSettings.affectAnimals && pawn.RaceProps.Animal)
+        if (!AdrenalineSettings.AllowNaturalGain || !AdrenalineSettings.AffectAnimals && pawn.RaceProps.Animal)
         {
             return false;
         }
@@ -74,11 +74,11 @@ public class HediffGiver_Adrenaline : HediffGiver
         }
 
         TryTeachAdrenalineConcept(pawn);
-        var rushhediff =
+        var rushHediff =
             (Hediff_AdrenalineRush)(pawn.health.hediffSet.GetFirstHediffOfDef(extraRaceProps
                                         .adrenalineRushHediff) ??
                                     pawn.health.AddHediff(extraRaceProps.adrenalineRushHediff));
-        rushhediff.recentPainFelt += painFromInjury;
+        rushHediff.recentPainFelt += painFromInjury;
         return true;
     }
 

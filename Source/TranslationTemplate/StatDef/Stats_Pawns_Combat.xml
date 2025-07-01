@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: adrenaline production -->
+  <AdrenalineProduction.label>adrenaline production</AdrenalineProduction.label>
+  <!-- EN: The pawn's current capacity to produce adrenaline. Affects how quickly an adrenaline rush comes on and how intense it gets. -->
+  <AdrenalineProduction.description>The pawn's current capacity to produce adrenaline. Affects how quickly an adrenaline rush comes on and how intense it gets.</AdrenalineProduction.description>
+</LanguageData>

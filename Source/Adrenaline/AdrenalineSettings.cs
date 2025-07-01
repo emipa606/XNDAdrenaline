@@ -5,11 +5,11 @@ namespace Adrenaline;
 
 public class AdrenalineSettings : ModSettings
 {
-    public static bool allowNaturalGain = true;
-    public static bool affectAnimals = true;
-    public static bool affectDownedPawns;
-    public static bool adrenalineCrashes = true;
-    public static bool npcUse = true;
+    public static bool AllowNaturalGain = true;
+    public static bool AffectAnimals = true;
+    public static bool AffectDownedPawns;
+    public static bool AdrenalineCrashes = true;
+    public static bool NpcUse = true;
 
     public void DoWindowContents(Rect wrect)
     {
@@ -22,39 +22,39 @@ public class AdrenalineSettings : ModSettings
 
         // Natural gain
         options.Gap();
-        options.CheckboxLabeled("Adrenaline.AllowNaturalGain".Translate(), ref allowNaturalGain,
+        options.CheckboxLabeled("Adrenaline.AllowNaturalGain".Translate(), ref AllowNaturalGain,
             "Adrenaline.AllowNaturalGain_ToolTip".Translate());
 
         // Affect animals
-        if (!allowNaturalGain)
+        if (!AllowNaturalGain)
         {
             GUI.color = Color.grey;
         }
 
         options.Gap();
-        options.CheckboxLabeled("Adrenaline.AffectAnimals".Translate(), ref affectAnimals,
+        options.CheckboxLabeled("Adrenaline.AffectAnimals".Translate(), ref AffectAnimals,
             "Adrenaline.AffectAnimals_ToolTip".Translate());
         GUI.color = defaultColor;
 
         // Downed pawns
         options.Gap();
-        options.CheckboxLabeled("Adrenaline.AffectDownedPawns".Translate(), ref affectDownedPawns,
+        options.CheckboxLabeled("Adrenaline.AffectDownedPawns".Translate(), ref AffectDownedPawns,
             "Adrenaline.AffectDownedPawns_ToolTip".Translate());
 
         // Adrenaline crashes
         options.Gap();
-        options.CheckboxLabeled("Adrenaline.AllowAdrenalineCrashes".Translate(), ref adrenalineCrashes,
+        options.CheckboxLabeled("Adrenaline.AllowAdrenalineCrashes".Translate(), ref AdrenalineCrashes,
             "Adrenaline.AllowAdrenalineCrashes_ToolTip".Translate());
 
         // NPCs
         options.Gap();
-        options.CheckboxLabeled("Adrenaline.AllowNPCUse".Translate(), ref npcUse,
+        options.CheckboxLabeled("Adrenaline.AllowNPCUse".Translate(), ref NpcUse,
             "Adrenaline.AllowNPCUse_ToolTip".Translate());
-        if (Adrenaline.currentVersion != null)
+        if (Adrenaline.CurrentVersion != null)
         {
             options.Gap();
             GUI.contentColor = Color.gray;
-            options.Label("Adrenaline.CurrentModVersion".Translate(Adrenaline.currentVersion));
+            options.Label("Adrenaline.CurrentModVersion".Translate(Adrenaline.CurrentVersion));
             GUI.contentColor = Color.white;
         }
 
@@ -64,10 +64,10 @@ public class AdrenalineSettings : ModSettings
 
     public override void ExposeData()
     {
-        Scribe_Values.Look(ref allowNaturalGain, "allowNaturalGain", true);
-        Scribe_Values.Look(ref affectAnimals, "affectAnimals", true);
-        Scribe_Values.Look(ref affectDownedPawns, "affectDownedPawns");
-        Scribe_Values.Look(ref adrenalineCrashes, "adrenalineCrashes", true);
-        Scribe_Values.Look(ref npcUse, "npcUse", true);
+        Scribe_Values.Look(ref AllowNaturalGain, "allowNaturalGain", true);
+        Scribe_Values.Look(ref AffectAnimals, "affectAnimals", true);
+        Scribe_Values.Look(ref AffectDownedPawns, "affectDownedPawns");
+        Scribe_Values.Look(ref AdrenalineCrashes, "adrenalineCrashes", true);
+        Scribe_Values.Look(ref NpcUse, "npcUse", true);
     }
 }

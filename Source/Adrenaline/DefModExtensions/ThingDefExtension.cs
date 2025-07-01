@@ -4,7 +4,7 @@ namespace Adrenaline;
 
 public class ThingDefExtension : DefModExtension
 {
-    public static readonly ThingDefExtension defaultValues = new ThingDefExtension();
+    public static readonly ThingDefExtension defaultValues = new();
     public string downedIngestGizmoDescription;
     public string downedIngestGizmoLabel;
     public string downedIngestGizmoNoneNearby;

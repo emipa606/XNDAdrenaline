@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: adrenaline -->
+  <Adrenaline.label>adrenaline</Adrenaline.label>
+  <!-- EN: Adrenaline is a hormone that is typically released in fight-or-flight situations - though synthesised in this case. Adrenaline primarily promotes blood flow to the muscles and dulls any pain that the user experiences.\n\nToo much adrenaline can potentially cause heart attacks. -->
+  <Adrenaline.description>Adrenaline is a hormone that is typically released in fight-or-flight situations - though synthesised in this case. Adrenaline primarily promotes blood flow to the muscles and dulls any pain that the user experiences.
+
+Too much adrenaline can potentially cause heart attacks.</Adrenaline.description>
+  <!-- EN: Inject {0} -->
+  <Adrenaline.ingestible.ingestCommandString>Inject {0}</Adrenaline.ingestible.ingestCommandString>
+  <!-- EN: Injecting {0}. -->
+  <Adrenaline.ingestible.ingestReportString>Injecting {0}.</Adrenaline.ingestible.ingestReportString>
+  <!-- EN: Inject a nearby adrenaline syringe. -->
+  <Adrenaline.modExtensions.0.downedIngestGizmoDescription>Inject a nearby adrenaline syringe.</Adrenaline.modExtensions.0.downedIngestGizmoDescription>
+  <!-- EN: Take adrenaline -->
+  <Adrenaline.modExtensions.0.downedIngestGizmoLabel>Take adrenaline</Adrenaline.modExtensions.0.downedIngestGizmoLabel>
+  <!-- EN: There are no adrenaline syringes nearby. -->
+  <Adrenaline.modExtensions.0.downedIngestGizmoNoneNearby>There are no adrenaline syringes nearby.</Adrenaline.modExtensions.0.downedIngestGizmoNoneNearby>
+</LanguageData>

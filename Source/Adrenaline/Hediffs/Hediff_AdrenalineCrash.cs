@@ -7,15 +7,15 @@ namespace Adrenaline;
 
 public class Hediff_AdrenalineCrash : Hediff_Adrenaline
 {
-    protected float _targetSeverityUnclamped;
-    protected bool severityFalling;
-    protected int ticksAtTargetSeverity;
+    private float _targetSeverityUnclamped;
+    private bool severityFalling;
+    private int ticksAtTargetSeverity;
 
     public int ticksToSeverityGain;
 
     public AdrenalineCrashProperties Props => def.GetModExtension<HediffDefExtension>().adrenalineCrash;
 
-    protected Hediff AdrenalineRushHediff =>
+    private Hediff AdrenalineRushHediff =>
         pawn.health.hediffSet.GetFirstHediffOfDef(ExtraRaceProps.adrenalineRushHediff);
 
     protected virtual float TargetSeverityUnclamped

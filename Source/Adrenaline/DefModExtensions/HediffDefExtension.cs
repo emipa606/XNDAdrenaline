@@ -5,11 +5,11 @@ namespace Adrenaline;
 
 public class HediffDefExtension : DefModExtension
 {
-    public static readonly HediffDefExtension defaultValues = new HediffDefExtension();
+    public static readonly HediffDefExtension defaultValues = new();
 
-    public readonly AdrenalineCrashProperties adrenalineCrash = new AdrenalineCrashProperties();
+    public readonly AdrenalineCrashProperties adrenalineCrash = new();
 
-    public readonly AdrenalineRushProperties adrenalineRush = new AdrenalineRushProperties();
+    public readonly AdrenalineRushProperties adrenalineRush = new();
 
     private readonly List<ExtraHediffStageProperties> stages;
 

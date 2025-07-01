@@ -10,9 +10,9 @@ public class Hediff_AdrenalineRush : Hediff_Adrenaline
 {
     public float recentPainFelt;
     public int severityLossDelayTicks;
-    protected float totalThreatSignificance; // Determines severity gain/loss rate
+    private float totalThreatSignificance; // Determines severity gain/loss rate
 
-    public AdrenalineRushProperties Props => def.GetModExtension<HediffDefExtension>().adrenalineRush;
+    private AdrenalineRushProperties Props => def.GetModExtension<HediffDefExtension>().adrenalineRush;
 
     protected virtual float EffectiveTotalThreatSignificance => Mathf.Min(totalThreatSignificance, 5);
 

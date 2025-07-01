@@ -5,12 +5,12 @@ using Verse.AI;
 
 namespace Adrenaline;
 
-[HarmonyPatch(typeof(Pawn_MindState), nameof(Pawn_MindState.MindStateTick))]
-public static class Pawn_MindState_MindStateTick
+[HarmonyPatch(typeof(Pawn_MindState), nameof(Pawn_MindState.MindStateTickInterval))]
+public static class Pawn_MindState_MindStateTickInterval
 {
     public static void Postfix(Pawn_MindState __instance)
     {
-        if (!AdrenalineSettings.npcUse)
+        if (!AdrenalineSettings.NpcUse)
         {
             return;
         }

@@ -28,7 +28,7 @@ public class CompAdrenalineTracker : ThingComp
     {
         get
         {
-            if (Pawn.Downed && !AdrenalineSettings.affectDownedPawns)
+            if (Pawn.Downed && !AdrenalineSettings.AffectDownedPawns)
             {
                 return 0;
             }

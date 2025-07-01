@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: adrenaline rush -->
+  <Adrenaline.label>adrenaline rush</Adrenaline.label>
+  <!-- EN: adrenaline rush -->
+  <Adrenaline.description>adrenaline rush</Adrenaline.description>
+  <!-- EN: negligible -->
+  <Adrenaline.stages.negligible.label>negligible</Adrenaline.stages.negligible.label>
+  <!-- EN: slight -->
+  <Adrenaline.stages.slight.label>slight</Adrenaline.stages.slight.label>
+  <!-- EN: moderate -->
+  <Adrenaline.stages.moderate.label>moderate</Adrenaline.stages.moderate.label>
+  <!-- EN: intense -->
+  <Adrenaline.stages.intense.label>intense</Adrenaline.stages.intense.label>
+  <!-- EN: extreme -->
+  <Adrenaline.stages.extreme.label>extreme</Adrenaline.stages.extreme.label>
+  <!-- EN: adrenaline crash -->
+  <AdrenalineCrash.label>adrenaline crash</AdrenalineCrash.label>
+  <!-- EN: adrenaline crash -->
+  <AdrenalineCrash.description>adrenaline crash</AdrenalineCrash.description>
+  <!-- EN: trivial -->
+  <AdrenalineCrash.stages.trivial.label>trivial</AdrenalineCrash.stages.trivial.label>
+  <!-- EN: minor -->
+  <AdrenalineCrash.stages.minor.label>minor</AdrenalineCrash.stages.minor.label>
+  <!-- EN: moderate -->
+  <AdrenalineCrash.stages.moderate.label>moderate</AdrenalineCrash.stages.moderate.label>
+  <!-- EN: severe -->
+  <AdrenalineCrash.stages.severe.label>severe</AdrenalineCrash.stages.severe.label>
+  <!-- EN: extreme -->
+  <AdrenalineCrash.stages.extreme.label>extreme</AdrenalineCrash.stages.extreme.label>
+</LanguageData>

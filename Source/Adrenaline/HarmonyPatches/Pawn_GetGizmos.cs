@@ -34,7 +34,7 @@ public static class Pawn_GetGizmos
                 defaultDesc = thingDefExtension.downedIngestGizmoDescription
             };
 
-            if (AdrenalineUtility.adrenalineGizmoIcons.TryGetValue(tDef, out var icon))
+            if (AdrenalineUtility.AdrenalineGizmoIcons.TryGetValue(tDef, out var icon))
             {
                 adrenalineGizmo.icon = icon;
             }

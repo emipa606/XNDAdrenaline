@@ -8,13 +8,13 @@ namespace Adrenaline;
 public class Adrenaline : Mod
 {
     public static Harmony HarmonyInstance;
-    public static string currentVersion;
+    public static string CurrentVersion;
 
     public Adrenaline(ModContentPack content) : base(content)
     {
         GetSettings<AdrenalineSettings>();
         HarmonyInstance = new Harmony("XeoNovaDan.Adrenaline");
-        currentVersion =
+        CurrentVersion =
             VersionFromManifest.GetVersionFromModMetaData(content.ModMetaData);
     }
 

@@ -13,10 +13,7 @@ public static class StaticConstructorClass
             // Add CompAdrenalineTracker to each eligible pawn def that doesn't already have one
             if (tDef.CanGetAdrenaline())
             {
-                if (tDef.comps == null)
-                {
-                    tDef.comps = [];
-                }
+                tDef.comps ??= [];
 
                 if (!tDef.comps.Any(c => c.GetType() == typeof(CompProperties_AdrenalineTracker)))
                 {
@@ -28,7 +25,7 @@ public static class StaticConstructorClass
             else if (tDef.GetModExtension<ThingDefExtension>() is { } thingDefExtension &&
                      !thingDefExtension.downedIngestGizmoTexPath.NullOrEmpty())
             {
-                AdrenalineUtility.adrenalineGizmoIcons.Add(tDef,
+                AdrenalineUtility.AdrenalineGizmoIcons.Add(tDef,
                     ContentFinder<Texture2D>.Get(thingDefExtension.downedIngestGizmoTexPath));
             }
         }

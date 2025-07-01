@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: Adrenaline -->
+  <Adrenaline.label>Adrenaline</Adrenaline.label>
+  <!-- EN: Biological pawns get adrenaline rushes when in combat, which makes them fight better in the heat of the action. Hoewever, they may experience 'adrenaline crashes' afterwards, which makes them lethargic for a while. -->
+  <Adrenaline.helpText>Biological pawns get adrenaline rushes when in combat, which makes them fight better in the heat of the action. Hoewever, they may experience 'adrenaline crashes' afterwards, which makes them lethargic for a while.</Adrenaline.helpText>
+</LanguageData>

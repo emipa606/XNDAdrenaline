@@ -6,7 +6,7 @@ namespace Adrenaline;
 
 public class ExtendedRaceProperties : DefModExtension
 {
-    public static readonly ExtendedRaceProperties defaultValues = new ExtendedRaceProperties();
+    public static readonly ExtendedRaceProperties defaultValues = new();
 
     public readonly HediffDef adrenalineCrashHediff = A_HediffDefOf.AdrenalineCrash;
     public readonly float adrenalineGainFactorArtificial = 1;
@@ -25,14 +25,11 @@ public class ExtendedRaceProperties : DefModExtension
     {
         get
         {
-            if (_relevantConsumables == null)
-            {
-                _relevantConsumables = DefDatabase<ThingDef>.AllDefs.Where(t =>
-                    t.IsDrug && t.ingestible.outcomeDoers is { } outcomeDoers &&
-                    outcomeDoers.Any(o =>
-                        o is IngestionOutcomeDoer_Adrenaline adrenalineOutcome &&
-                        adrenalineOutcome.hediffDef == adrenalineRushHediff)).ToList();
-            }
+            _relevantConsumables ??= DefDatabase<ThingDef>.AllDefs.Where(t =>
+                t.IsDrug && t.ingestible.outcomeDoers is { } outcomeDoers &&
+                outcomeDoers.Any(o =>
+                    o is IngestionOutcomeDoer_Adrenaline adrenalineOutcome &&
+                    adrenalineOutcome.hediffDef == adrenalineRushHediff)).ToList();
 
             return _relevantConsumables;
         }
@@ -42,12 +39,9 @@ public class ExtendedRaceProperties : DefModExtension
     {
         get
         {
-            if (_relevantConsumablesDowned == null)
-            {
-                _relevantConsumablesDowned = RelevantConsumables.Where(t =>
-                    (t.GetModExtension<ThingDefExtension>() ?? ThingDefExtension.defaultValues)
-                    .ingestibleWhenDowned).ToList();
-            }
+            _relevantConsumablesDowned ??= RelevantConsumables.Where(t =>
+                (t.GetModExtension<ThingDefExtension>() ?? ThingDefExtension.defaultValues)
+                .ingestibleWhenDowned).ToList();
 
             return _relevantConsumablesDowned;
         }

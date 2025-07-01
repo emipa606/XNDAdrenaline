@@ -16,7 +16,6 @@ public class MapComponent_AdrenalineTracker : MapComponent
 
     public MapComponent_AdrenalineTracker(Map map) : base(map)
     {
-        this.map = map;
     }
 
     public override void MapComponentTick()
@@ -24,7 +23,7 @@ public class MapComponent_AdrenalineTracker : MapComponent
         // For save compatibility, but also because getting the list to save is a PITA
         if (!cacheSet)
         {
-            ResetCachedPotentialHostileThings();
+            resetCachedPotentialHostileThings();
             cacheSet = true;
         }
 
@@ -48,7 +47,7 @@ public class MapComponent_AdrenalineTracker : MapComponent
         }
     }
 
-    private void ResetCachedPotentialHostileThings()
+    private void resetCachedPotentialHostileThings()
     {
         cachedPotentialHostileThings.Clear();
         foreach (var thing in map.listerThings.AllThings)
