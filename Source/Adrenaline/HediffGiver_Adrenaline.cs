@@ -82,7 +82,7 @@ public class HediffGiver_Adrenaline : HediffGiver
         return true;
     }
 
-    private void TryTeachAdrenalineConcept(Pawn pawn)
+    private static void TryTeachAdrenalineConcept(Pawn pawn)
     {
         if (pawn.Faction == Faction.OfPlayer && !PlayerKnowledgeDatabase.IsComplete(A_ConceptDefOf.Adrenaline))
         {

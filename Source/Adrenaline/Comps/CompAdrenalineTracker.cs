@@ -43,7 +43,7 @@ public class CompAdrenalineTracker : ThingComp
     public override void CompTick()
     {
         // If the pawn doesn't have an adrenaline rush, reduce the cumulative adrenaline rush severity
-        if (parent.IsHashIntervalTick(UpdateIntervalTicks) &&
+        if (parent.Spawned && parent.IsHashIntervalTick(UpdateIntervalTicks) &&
             !Pawn.health.hediffSet.HasHediff(ExtraRaceProps.adrenalineRushHediff))
         {
             AdrenalineProduced -=

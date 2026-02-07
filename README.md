@@ -1,17 +1,17 @@
 # [[XND] Adrenaline! (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2037728879)
 
-![Image](https://i.imgur.com/buuPQel.png)
+![Image](https://img.litet.net/logos/Info.png)
 
 Update of XeoNovaDans mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=1823138604
 
 - Added support for [[SYR] Trait Value](https://steamcommunity.com/sharedfiles/filedetails/?id=2451324814)
 
-![Image](https://i.imgur.com/pufA0kM.png)
+![Image](https://img.litet.net/logos/Notice.png)
 	
-![Image](https://i.imgur.com/Z4GOv8H.png)
+![Image](https://img.litet.net/logos/OriginalDescription.png)
 
-![Image](https://i.imgur.com/5XDUXYi.png)
+![Image](https://img.litet.net/5XDUXYi.png)
 
 This simple mod aims to make combat more interesting and more immersive by making biological pawns produce adrenaline whenever they are put into fight-or-flight situations. Yes, all biological pawns, from Joe Colonist, to that manhunting squirrel on day 5, and everybody else in between!
 
@@ -29,7 +29,7 @@ I recommend using [**Smart Medicine**](https://steamcommunity.com/sharedfiles/fi
 
 Powered by the Harmony Patch Library.
 
-![Image](https://i.imgur.com/CwkjKT1.png)
+![Image](https://img.litet.net/CwkjKT1.png)
 
 **Mods:**
 Should work fine with alien races and modded animals. There are currently no known mod conflicts.
@@ -39,7 +39,7 @@ If you are a modder and wish to make animals or alien races have different adren
 **Saves:**
 Can safely be added to ongoing saves. There may be errors when removing this from an ongoing save, but they should be harmless.
 
-![Image](https://i.imgur.com/an44PjV.png)
+![Image](https://img.litet.net/an44PjV.png)
 
 Brrainz for his fantastic work with the Harmony Patch Library.
 Ryflamer for kindly providing the adrenaline syringe sprite.
@@ -48,13 +48,13 @@ Mehni for rubberducking :rubberduck:
 Various members of the discord and forums for playtesting and contributing their ideas!
 
 
-![Image](https://i.imgur.com/PwoNOj4.png)
+![Image](https://img.litet.net/logos/ReportingIssues.png)
 
 
 
 -  See if the the error persists if you just have this mod and its requirements active.
 -  If not, try adding your other mods until it happens again.
--  Post your error-log using [HugsLib](https://steamcommunity.com/workshop/filedetails/?id=818773962) or the standalone [Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) and command Ctrl+F12
+-  Always post your log using the [Log Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404)
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
@@ -62,4 +62,4 @@ Various members of the discord and forums for playtesting and contributing their
 
  
 
-[![Image](https://img.shields.io/github/v/release/emipa606/XNDAdrenaline?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2037728879) | tags:  enhancements,  drug
+[![Image](https://img.shields.io/github/v/release/emipa606/XNDAdrenaline?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2037728879) | tags: enhancements, drug

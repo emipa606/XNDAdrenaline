@@ -14,7 +14,9 @@ public class MapComponent_AdrenalineTracker : MapComponent
 
     private bool cacheSet;
 
+#pragma warning disable IDE0290
     public MapComponent_AdrenalineTracker(Map map) : base(map)
+#pragma warning restore IDE0290
     {
     }
 

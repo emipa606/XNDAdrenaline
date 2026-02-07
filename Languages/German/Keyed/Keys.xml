@@ -16,4 +16,6 @@
   <Adrenaline.AllowAdrenalineCrashes_ToolTip>Legt fest, ob Bauern nach Adrenalinschüben einen Adrenalinabsturz erleiden oder nicht - eine kurzfristige Strafe, die in erster Linie das Bewusstsein des Bauern reduziert.</Adrenaline.AllowAdrenalineCrashes_ToolTip>
   <Adrenaline.AllowNPCUse>NPC-Benutzung zulassen</Adrenaline.AllowNPCUse>
   <Adrenaline.AllowNPCUse_ToolTip>Legt fest, ob NSCs (z.B. Plünderer) Adrenalinspritzen in der Nähe injizieren können, wenn sie niedergeschlagen wurden oder nicht.</Adrenaline.AllowNPCUse_ToolTip>
+  <!-- StatParts -->
+  <!-- Settings -->
 </LanguageData>

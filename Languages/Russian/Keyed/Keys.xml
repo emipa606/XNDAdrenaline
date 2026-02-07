@@ -16,4 +16,6 @@
   <Adrenaline.AllowAdrenalineCrashes_ToolTip>Определяет, получают ли пешки адреналиновый криз после выброса адреналина - кратковременное наказание, которое в первую очередь снижает сознание пешки.</Adrenaline.AllowAdrenalineCrashes_ToolTip>
   <Adrenaline.AllowNPCUse>Разрешить использование NPC</Adrenaline.AllowNPCUse>
   <Adrenaline.AllowNPCUse_ToolTip>Определяет, могут ли NPC (например, рейдеры) вводить близлежащие шприцы с адреналином, если они были убиты.</Adrenaline.AllowNPCUse_ToolTip>
+  <!-- StatParts -->
+  <!-- Settings -->
 </LanguageData>

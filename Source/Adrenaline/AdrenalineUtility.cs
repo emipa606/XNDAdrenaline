@@ -93,109 +93,6 @@ public static class AdrenalineUtility
         return turret.CurrentEffectiveVerb.Available() && turret.HostileTo(pawn);
     }
 
-    private static bool inCombatWith(this Pawn pawn, Pawn p)
-    {
-        // pawn is actively targeting p
-        if (pawn.isAttacking(p))
-        {
-            return true;
-        }
-
-        // p is actively targeting pawn and has made attacks
-        var battle = pawn.records.BattleActive;
-        return p.isAttacking(pawn) && battle != null && battle.Concerns(p);
-    }
-
-    private static bool isAttacking(this Pawn pawn, Pawn p)
-    {
-        return pawn.IsFighting() && pawn.CurJob.AnyTargetIs(p);
-    }
-
-    public static bool IsPotentialPerceivableThreat(this Thing t)
-    {
-        return t is Building_Turret;
-    }
-
-    public static float PerceivedThreatSignificanceFor(this Thing t, Pawn pawn)
-    {
-        var thingWithComps = t as ThingWithComps;
-        var p = t as Pawn;
-        float threatSignificance = 0;
-
-        // If the adrenaline gainee is an animal, only factor in the other thing's body size relative to the animal's body size
-        if (pawn.RaceProps.Animal)
-        {
-            if (p != null)
-            {
-                threatSignificance += p.BodySize * p.health.summaryHealth.SummaryHealthPercent /
-                                      (pawn.BodySize * pawn.health.summaryHealth.SummaryHealthPercent);
-            }
-            else
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        // Otherwise factor in 'effective combat power'
-        else
-        {
-            threatSignificance += t.EffectiveCombatPower() / pawn.EffectiveCombatPower();
-
-            // If threat is either manning a thing or being manned, halve the significance to reduce overlap
-            if (p != null && p.MannedThing() != null || thingWithComps != null &&
-                thingWithComps.GetComp<CompMannable>() is { MannedNow: true })
-            {
-                threatSignificance /= 2;
-            }
-        }
-
-        // If pawn is attacking p but p isn't attacking pawn, reduce significance by 5/6
-        if (p != null && pawn.isAttacking(p) && !p.isAttacking(pawn))
-        {
-            threatSignificance /= 6;
-        }
-
-        return threatSignificance;
-    }
-
-    private static float EffectiveCombatPower(this Thing t)
-    {
-        switch (t)
-        {
-            // Pawn
-            case Pawn p:
-            {
-                float combatPower;
-
-                // If the pawn is a colonist, return the maximum of the kindDef's combatPower rating or the points per colonist based on the wealth of the player's wealthiest settlement
-                if (p.IsColonist)
-                {
-                    var pawnIncidentTarget = Current.Game.World.worldObjects.Settlements
-                        .Where(s => s.HasMap && s.Map.IsPlayerHome).MaxBy(s => s.Map.PlayerWealthForStoryteller).Map;
-                    combatPower =
-                        Mathf.Max(
-                            pointsPerColonistByWealthCurve.Evaluate(pawnIncidentTarget.PlayerWealthForStoryteller),
-                            p.kindDef.combatPower);
-                }
-
-                else
-                {
-                    combatPower = p.kindDef.combatPower;
-                }
-
-                return combatPower * p.health.summaryHealth.SummaryHealthPercent *
-                       p.ageTracker.CurLifeStage.bodySizeFactor;
-            }
-            // Turret
-            case Building_Turret turret:
-                // Return 1/6th of its base market value
-                return turret.def.GetStatValueAbstract(StatDefOf.MarketValue) / 6;
-            default:
-                throw new NotImplementedException(
-                    $"Unaccounted effective combat power calculation for {t} (Type={t.GetType().Name})");
-        }
-    }
-
     public static bool CanGetAdrenaline(this Pawn p)
     {
         return p.def.CanGetAdrenaline();
@@ -253,5 +150,115 @@ public static class AdrenalineUtility
     public static bool AnyNearbyAdrenaline(Thing t, ThingDef aDef, out List<Thing> adrenalineThings)
     {
         return AnyNearbyAdrenaline(t, [aDef], out adrenalineThings);
+    }
+
+    extension(Pawn pawn)
+    {
+        private bool inCombatWith(Pawn p)
+        {
+            // pawn is actively targeting p
+            if (pawn.isAttacking(p))
+            {
+                return true;
+            }
+
+            // p is actively targeting pawn and has made attacks
+            var battle = pawn.records.BattleActive;
+            return p.isAttacking(pawn) && battle != null && battle.Concerns(p);
+        }
+
+        private bool isAttacking(Pawn p)
+        {
+            return pawn.IsFighting() && pawn.CurJob.AnyTargetIs(p);
+        }
+    }
+
+    extension(Thing t)
+    {
+        public bool IsPotentialPerceivableThreat()
+        {
+            return t is Building_Turret;
+        }
+
+        public float PerceivedThreatSignificanceFor(Pawn pawn)
+        {
+            var thingWithComps = t as ThingWithComps;
+            var p = t as Pawn;
+            float threatSignificance = 0;
+
+            // If the adrenaline gainee is an animal, only factor in the other thing's body size relative to the animal's body size
+            if (pawn.RaceProps.Animal)
+            {
+                if (p != null)
+                {
+                    threatSignificance += p.BodySize * p.health.summaryHealth.SummaryHealthPercent /
+                                          (pawn.BodySize * pawn.health.summaryHealth.SummaryHealthPercent);
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            // Otherwise factor in 'effective combat power'
+            else
+            {
+                threatSignificance += t.EffectiveCombatPower() / pawn.EffectiveCombatPower();
+
+                // If threat is either manning a thing or being manned, halve the significance to reduce overlap
+                if (p != null && p.MannedThing() != null || thingWithComps != null &&
+                    thingWithComps.GetComp<CompMannable>() is { MannedNow: true })
+                {
+                    threatSignificance /= 2;
+                }
+            }
+
+            // If pawn is attacking p but p isn't attacking pawn, reduce significance by 5/6
+            if (p != null && pawn.isAttacking(p) && !p.isAttacking(pawn))
+            {
+                threatSignificance /= 6;
+            }
+
+            return threatSignificance;
+        }
+
+        private float EffectiveCombatPower()
+        {
+            switch (t)
+            {
+                // Pawn
+                case Pawn p:
+                {
+                    float combatPower;
+
+                    // If the pawn is a colonist, return the maximum of the kindDef's combatPower rating or the points per colonist based on the wealth of the player's wealthiest settlement
+                    if (p.IsColonist)
+                    {
+                        var pawnIncidentTarget = Current.Game.World.worldObjects.Settlements
+                            .Where(s => s.HasMap && s.Map.IsPlayerHome).MaxBy(s => s.Map.PlayerWealthForStoryteller)
+                            .Map;
+                        combatPower =
+                            Mathf.Max(
+                                pointsPerColonistByWealthCurve.Evaluate(pawnIncidentTarget.PlayerWealthForStoryteller),
+                                p.kindDef.combatPower);
+                    }
+
+                    else
+                    {
+                        combatPower = p.kindDef.combatPower;
+                    }
+
+                    return combatPower * p.health.summaryHealth.SummaryHealthPercent *
+                           p.ageTracker.CurLifeStage.bodySizeFactor;
+                }
+                // Turret
+                case Building_Turret turret:
+                    // Return 1/6th of its base market value
+                    return turret.def.GetStatValueAbstract(StatDefOf.MarketValue) / 6;
+                default:
+                    throw new NotImplementedException(
+                        $"Unaccounted effective combat power calculation for {t} (Type={t.GetType().Name})");
+            }
+        }
     }
 }

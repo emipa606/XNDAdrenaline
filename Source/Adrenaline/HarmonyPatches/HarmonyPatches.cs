@@ -1,4 +1,5 @@
-﻿using Verse;
+﻿using System.Reflection;
+using Verse;
 
 namespace Adrenaline;
 
@@ -7,6 +8,6 @@ public static class HarmonyPatches
 {
     static HarmonyPatches()
     {
-        Adrenaline.HarmonyInstance.PatchAll();
+        Adrenaline.HarmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
     }
 }

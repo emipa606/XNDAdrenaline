@@ -25,28 +25,28 @@
     <li>brrainz.harmony</li>
     <li>syrchalis.traitvalue</li>
   </loadAfter>
-  <description>[img]https://i.imgur.com/buuPQel.png[/img]
+  <description>[img]https://img.litet.net/logos/Info.png[/img]
 Update of XeoNovaDans mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=1823138604
 
 - Added support for [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2451324814][SYR] Trait Value[/url]
 
-[img]https://i.imgur.com/pufA0kM.png[/img]
+[img]https://img.litet.net/logos/Notice.png[/img]
 
 [table]
 	[tr]
-		[td][url=https://dsc.gg/mlie][img]https://i.imgur.com/zdzzBrc.png[/img][/url][/td]
-		[td][url=https://github.com/emipa606/XNDAdrenaline][img]https://i.imgur.com/kTkpTOE.png[/img][/url][/td]
+		[td][url=https://discord.gg/h5TY6DA][img]https://img.litet.net/logos/Discord.png[/img][/url][/td]
+		[td][url=https://github.com/emipa606/XNDAdrenaline][img]https://img.litet.net/logos/Github.png[/img][/url][/td]
     [/tr]
     [tr]
-        [td][img]https://i.imgur.com/WjDSfUn.png[/img][/td]
-        [td][img]https://i.imgur.com/Be8E2qJ.png[/img][/td]
+        [td][img]https://img.litet.net/logos/SafeToAdd.png[/img][/td]
+        [td][img]https://img.litet.net/logos/RemoveMayWork.png[/img][/td]
     [/tr]
 [/table]
 	
-[img]https://i.imgur.com/Z4GOv8H.png[/img]
+[img]https://img.litet.net/logos/OriginalDescription.png[/img]
 
-[img]https://i.imgur.com/5XDUXYi.png[/img]
+[img]https://img.litet.net/5XDUXYi.png[/img]
 This simple mod aims to make combat more interesting and more immersive by making biological pawns produce adrenaline whenever they are put into fight-or-flight situations. Yes, all biological pawns, from Joe Colonist, to that manhunting squirrel on day 5, and everybody else in between!
 
 Adrenaline primarily boosts a pawn's consciousness, movement and melee damage while also reducing the amount of pain that they can feel - so they're really giving the fight 110%! However, after a prolonged adrenaline rush, pawns may then experience the opposite: adrenaline crashes that make them feel lethargic for a short period of time.
@@ -63,7 +63,7 @@ I recommend using [url=https://steamcommunity.com/sharedfiles/filedetails/?id=13
 
 Powered by the Harmony Patch Library.
 
-[img]https://i.imgur.com/CwkjKT1.png[/img]
+[img]https://img.litet.net/CwkjKT1.png[/img]
 [b]Mods:[/b]
 Should work fine with alien races and modded animals. There are currently no known mod conflicts.
 
@@ -72,7 +72,7 @@ If you are a modder and wish to make animals or alien races have different adren
 [b]Saves:[/b]
 Can safely be added to ongoing saves. There may be errors when removing this from an ongoing save, but they should be harmless.
 
-[img]https://i.imgur.com/an44PjV.png[/img]
+[img]https://img.litet.net/an44PjV.png[/img]
 Brrainz for his fantastic work with the Harmony Patch Library.
 Ryflamer for kindly providing the adrenaline syringe sprite.
 Trunken for kindly providing the fancier headings on this page and proofreading the GitHub wiki.
@@ -80,17 +80,17 @@ Mehni for rubberducking :rubberduck:
 Various members of the discord and forums for playtesting and contributing their ideas!
 
 
-[img]https://i.imgur.com/PwoNOj4.png[/img]
+[img]https://img.litet.net/logos/ReportingIssues.png[/img]
 [list]
 [*] See if the the error persists if you just have this mod and its requirements active.
 [*] If not, try adding your other mods until it happens again.
-[*] Post your error-log using [url=https://steamcommunity.com/workshop/filedetails/?id=818773962]HugsLib[/url] or the standalone [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404]Uploader[/url] and command Ctrl+F12
+[*] Always post your log using the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404]Log Uploader[/url]
 [*] For best support, please use the Discord-channel for error-reporting.
 [*] Do not report errors by making a discussion-thread, I get no notification of that.
 [*] If you have the solution for a problem, please post it to the GitHub repository.
 [*] Use [url=https://github.com/RimSort/RimSort/releases/latest]RimSort[/url] to sort your mods
 [/list] 
 
-[url=https://steamcommunity.com/sharedfiles/filedetails/changelog/2037728879][img]https://img.shields.io/github/v/release/emipa606/XNDAdrenaline?label=latest%20version&amp;style=plastic&amp;color=9f1111&amp;labelColor=black[/img][/url] | tags:  enhancements,  drug</description>
-  <modVersion IgnoreIfNoMatchingField="True">1.6.0</modVersion>
+[url=https://steamcommunity.com/sharedfiles/filedetails/changelog/2037728879][img]https://img.shields.io/github/v/release/emipa606/XNDAdrenaline?label=latest%20version&amp;style=plastic&amp;color=9f1111&amp;labelColor=black[/img][/url] | tags: enhancements, drug</description>
+  <modVersion IgnoreIfNoMatchingField="True">1.6.1</modVersion>
 </ModMetaData>

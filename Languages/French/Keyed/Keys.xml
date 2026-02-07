@@ -16,4 +16,6 @@
   <Adrenaline.AllowAdrenalineCrashes_ToolTip>Détermine si les pions subissent ou non des chutes d'adrénaline après les poussées d'adrénaline - une pénalité à court terme qui réduit principalement la conscience du pion.</Adrenaline.AllowAdrenalineCrashes_ToolTip>
   <Adrenaline.AllowNPCUse>Autoriser l'utilisation par les PNJ</Adrenaline.AllowNPCUse>
   <Adrenaline.AllowNPCUse_ToolTip>Détermine si les PNJ (par exemple les raiders) peuvent ou non injecter des seringues d'adrénaline à proximité lorsqu'ils ont été abattus.</Adrenaline.AllowNPCUse_ToolTip>
+  <!-- StatParts -->
+  <!-- Settings -->
 </LanguageData>
