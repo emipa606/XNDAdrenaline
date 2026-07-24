@@ -1,5 +1,8 @@
 # Changelog for XNDAdrenaline
 
+1.6.2 - Fixed wrong author name
+
+
 1.6.1 - FIxed adrenaline comp when pawn is despawned
 Used DeepL to update translations for ChineseSimplified, French, German, Russian
 
