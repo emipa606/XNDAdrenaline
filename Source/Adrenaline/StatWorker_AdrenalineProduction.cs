@@ -38,18 +38,12 @@ public class StatWorker_AdrenalineProduction : StatWorker
 
     private static float valueFactorFromTracker(Thing thing)
     {
-        var adrenalineTracker = thing.TryGetComp<CompAdrenalineTracker>();
+        var adrenalineTracker = thing?.TryGetComp<CompAdrenalineTracker>();
         if (adrenalineTracker != null)
         {
             return adrenalineTracker.AdrenalineProductionFactor;
         }
 
-        // Null adrenaline tracker
-        if (Current.ProgramState == ProgramState.Playing)
-        {
-            Log.Error($"Tried to get factor from CompAdrenalineTracker for {thing} but adrenalineTracker is null");
-        }
-
-        return 1;
+        return 1f;
     }
 }
