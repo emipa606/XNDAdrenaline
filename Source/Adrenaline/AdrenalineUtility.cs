@@ -44,15 +44,22 @@ public static class AdrenalineUtility
             return false;
         }
 
-        // Not spawned, fogged, too far away from the pawn in question or cannot see them
-        if (!t.Spawned || t.Position.Fogged(t.Map) ||
-            pawn.Position.DistanceTo(t.Position) > BasePerceivedThreatDistance *
-            pawn.health.capacities.GetLevel(PawnCapacityDefOf.Sight) || !pawn.CanSee(t))
+        // Basic validation and fog check
+        if (!t.Spawned || t.Map == null || t.Map != pawn.Map || t.Position.Fogged(t.Map))
         {
             return false;
         }
 
-        // Pawn
+        // Distance check (using original logic but moved up to short-circuit earlier)
+        float maxDist = BasePerceivedThreatDistance * pawn.health.capacities.GetLevel(PawnCapacityDefOf.Sight);
+        if (pawn.Position.DistanceTo(t.Position) > maxDist)
+        {
+            return false;
+        }
+
+        bool isThreat = false;
+
+        // Pawn checks
         if (t is Pawn p)
         {
             var comp = p.GetComp<CompCanBeDormant>();
@@ -61,36 +68,41 @@ public static class AdrenalineUtility
                 return false;
             }
 
-            return !p.Downed && (p.HostileTo(pawn) || pawn.inCombatWith(p));
+            if (!p.Downed && (p.HostileTo(pawn) || pawn.inCombatWith(p)))
+            {
+                isThreat = true;
+            }
+        }
+        // Turret checks (if pawn is not an animal)
+        else if (!pawn.RaceProps.Animal && t is Building_Turret turret)
+        {
+            var powerComp = turret.GetComp<CompPowerTrader>();
+            if (powerComp is { PowerOn: false })
+            {
+                return false;
+            }
+
+            var mannableComp = turret.GetComp<CompMannable>();
+            if (mannableComp is { MannedNow: false })
+            {
+                return false;
+            }
+
+            // No verb (Misc. TurretBases compatibility)
+            if (turret.CurrentEffectiveVerb != null && turret.CurrentEffectiveVerb.Available() && turret.HostileTo(pawn))
+            {
+                isThreat = true;
+            }
         }
 
-        // Turret (if pawn is not an animal)
-        if (pawn.RaceProps.Animal || t is not Building_Turret turret)
+        // If it isn't an active threat, don't bother raycasting
+        if (!isThreat)
         {
             return false;
         }
 
-        // Has no power
-        var powerComp = turret.GetComp<CompPowerTrader>();
-        if (powerComp is { PowerOn: false })
-        {
-            return false;
-        }
-
-        // Unmanned
-        var mannableComp = turret.GetComp<CompMannable>();
-        if (mannableComp is { MannedNow: false })
-        {
-            return false;
-        }
-
-        // No verb (Misc. TurretBases compatibility)
-        if (turret.CurrentEffectiveVerb == null)
-        {
-            return false;
-        }
-
-        return turret.CurrentEffectiveVerb.Available() && turret.HostileTo(pawn);
+        // Finally, run the expensive Line of Sight raycast ONLY on valid hostile targets within range
+        return pawn.CanSee(t);
     }
 
     public static bool CanGetAdrenaline(this Pawn p)
