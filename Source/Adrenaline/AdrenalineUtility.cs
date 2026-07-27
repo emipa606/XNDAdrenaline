@@ -194,10 +194,6 @@ public static class AdrenalineUtility
                     threatSignificance += p.BodySize * p.health.summaryHealth.SummaryHealthPercent /
                                           (pawn.BodySize * pawn.health.summaryHealth.SummaryHealthPercent);
                 }
-                else
-                {
-                    throw new NotImplementedException();
-                }
             }
 
             // Otherwise factor in 'effective combat power'
@@ -256,8 +252,7 @@ public static class AdrenalineUtility
                     // Return 1/6th of its base market value
                     return turret.def.GetStatValueAbstract(StatDefOf.MarketValue) / 6;
                 default:
-                    throw new NotImplementedException(
-                        $"Unaccounted effective combat power calculation for {t} (Type={t.GetType().Name})");
+                    return 0f;
             }
         }
     }
