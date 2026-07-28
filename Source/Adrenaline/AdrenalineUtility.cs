@@ -10,7 +10,7 @@ namespace Adrenaline;
 
 public static class AdrenalineUtility
 {
-    private const float BasePerceivedThreatDistance = 50;
+    private const float BasePerceivedThreatDistance = 50f;
 
     private static readonly SimpleCurve pointsPerColonistByWealthCurve =
     [
@@ -24,42 +24,84 @@ public static class AdrenalineUtility
 
     public static IEnumerable<Thing> GetPerceivedThreatsFor(Pawn pawn)
     {
-        if (pawn.Map == null)
+        if (pawn?.Map == null)
         {
             yield break;
         }
 
-        foreach (var threat in pawn.Map.GetComponent<MapComponent_AdrenalineTracker>().allPotentialHostileThings
-                     .Where(t => t.isPerceivedThreatBy(pawn)))
+        var potentialThings = pawn.Map.GetComponent<MapComponent_AdrenalineTracker>()?.allPotentialHostileThings;
+        if (potentialThings == null)
         {
-            yield return threat;
+            yield break;
         }
+
+        foreach (var threat in potentialThings)
+        {
+            if (threat.isPerceivedThreatBy(pawn))
+            {
+                yield return threat;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Fast early-exit threat check. Returns true on the very first threat found without evaluating the rest of the map.
+    /// </summary>
+    public static bool HasPerceivedThreat(Pawn pawn)
+    {
+        if (pawn?.Map == null)
+        {
+            return false;
+        }
+
+        var potentialThings = pawn.Map.GetComponent<MapComponent_AdrenalineTracker>()?.allPotentialHostileThings;
+        if (potentialThings == null)
+        {
+            return false;
+        }
+
+        foreach (var threat in potentialThings)
+        {
+            if (threat.isPerceivedThreatBy(pawn))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private static bool isPerceivedThreatBy(this Thing t, Pawn pawn)
     {
-        // Bandaid solution attempt to fix a null reference exception -- will need to a more proper fix at some point in the future
-        if (t == null || pawn == null)
+        // 1. Basic map and validity checks
+        if (t == null || pawn == null || !t.Spawned || t.Map == null || t.Map != pawn.Map)
         {
             return false;
         }
 
-        // Basic validation and fog check
-        if (!t.Spawned || t.Map == null || t.Map != pawn.Map || t.Position.Fogged(t.Map))
+        // 2. Check pawn sight capacity
+        float sightLevel = pawn.health.capacities.GetLevel(PawnCapacityDefOf.Sight);
+        if (sightLevel <= 0f)
         {
             return false;
         }
 
-        // Distance check (using original logic but moved up to short-circuit earlier)
-        float maxDist = BasePerceivedThreatDistance * pawn.health.capacities.GetLevel(PawnCapacityDefOf.Sight);
+        // 3. Fast distance check
+        float maxDist = BasePerceivedThreatDistance * sightLevel;
         if (pawn.Position.DistanceTo(t.Position) > maxDist)
         {
             return false;
         }
 
+        // 4. Fog check
+        if (t.Position.Fogged(t.Map))
+        {
+            return false;
+        }
+
+        // 5. Cheap hostility & status checks BEFORE executing expensive line-of-sight raycasts
         bool isThreat = false;
 
-        // Pawn checks
         if (t is Pawn p)
         {
             var comp = p.GetComp<CompCanBeDormant>();
@@ -73,7 +115,6 @@ public static class AdrenalineUtility
                 isThreat = true;
             }
         }
-        // Turret checks (if pawn is not an animal)
         else if (!pawn.RaceProps.Animal && t is Building_Turret turret)
         {
             var powerComp = turret.GetComp<CompPowerTrader>();
@@ -88,20 +129,18 @@ public static class AdrenalineUtility
                 return false;
             }
 
-            // No verb (Misc. TurretBases compatibility)
             if (turret.CurrentEffectiveVerb != null && turret.CurrentEffectiveVerb.Available() && turret.HostileTo(pawn))
             {
                 isThreat = true;
             }
         }
 
-        // If it isn't an active threat, don't bother raycasting
         if (!isThreat)
         {
             return false;
         }
 
-        // Finally, run the expensive Line of Sight raycast ONLY on valid hostile targets within range
+        // 6. Raycast line-of-sight ONLY if the target passed all hostility, power, and range filters
         return pawn.CanSee(t);
     }
 
@@ -239,18 +278,14 @@ public static class AdrenalineUtility
                 {
                     float combatPower;
 
-                    // If the pawn is a colonist, return the maximum of the kindDef's combatPower rating or the points per colonist based on the wealth of the player's wealthiest settlement
+                    // If the pawn is a colonist, calculate combat power using the pawn's map wealth directly
                     if (p.IsColonist)
                     {
-                        var pawnIncidentTarget = Current.Game.World.worldObjects.Settlements
-                            .Where(s => s.HasMap && s.Map.IsPlayerHome).MaxBy(s => s.Map.PlayerWealthForStoryteller)
-                            .Map;
-                        combatPower =
-                            Mathf.Max(
-                                pointsPerColonistByWealthCurve.Evaluate(pawnIncidentTarget.PlayerWealthForStoryteller),
-                                p.kindDef.combatPower);
+                        float wealth = p.Map?.PlayerWealthForStoryteller ?? 0f;
+                        combatPower = Mathf.Max(
+                            pointsPerColonistByWealthCurve.Evaluate(wealth),
+                            p.kindDef.combatPower);
                     }
-
                     else
                     {
                         combatPower = p.kindDef.combatPower;
