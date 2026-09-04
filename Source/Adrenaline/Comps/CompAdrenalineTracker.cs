@@ -28,6 +28,10 @@ public class CompAdrenalineTracker : ThingComp
     {
         get
         {
+            if (parent is not Pawn pawn)
+            {
+                return 0;
+            }
             if (Pawn.Downed && !AdrenalineSettings.AffectDownedPawns)
             {
                 return 0;
@@ -38,11 +42,17 @@ public class CompAdrenalineTracker : ThingComp
     }
 
     public bool CanProduceAdrenaline =>
-        parent.GetStatValue(A_StatDefOf.AdrenalineProduction) > ProductionFactorThreshold;
+        parent is Pawn && parent.GetStatValue(A_StatDefOf.AdrenalineProduction) > ProductionFactorThreshold;
 
     public override void CompTick()
-    {
+    {    //Guardrail to catch if pawn is either a pawn or an unnatural corpse from Anomaly DLC
+        if (parent is not Pawn pawn)
+        {
+            base.CompTick();
+            return;
+        }
         // If the pawn doesn't have an adrenaline rush, reduce the cumulative adrenaline rush severity
+        
         if (parent.Spawned && parent.IsHashIntervalTick(UpdateIntervalTicks) &&
             !Pawn.health.hediffSet.HasHediff(ExtraRaceProps.adrenalineRushHediff))
         {
