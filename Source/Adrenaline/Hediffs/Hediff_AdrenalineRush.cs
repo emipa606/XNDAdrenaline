@@ -6,7 +6,7 @@ using Verse;
 
 namespace Adrenaline;
 
-public class Hediff_AdrenalineRush : Hediff_Adrenaline
+public sealed class Hediff_AdrenalineRush : Hediff_Adrenaline
 {
     public float recentPainFelt;
     public int severityLossDelayTicks;
@@ -14,9 +14,9 @@ public class Hediff_AdrenalineRush : Hediff_Adrenaline
 
     private AdrenalineRushProperties Props => def.GetModExtension<HediffDefExtension>().adrenalineRush;
 
-    protected virtual float EffectiveTotalThreatSignificance => Mathf.Min(totalThreatSignificance, 5);
+    private float EffectiveTotalThreatSignificance => Mathf.Min(totalThreatSignificance, 5);
 
-    protected virtual float TargetSeverity
+    private float TargetSeverity
     {
         get
         {
@@ -29,7 +29,7 @@ public class Hediff_AdrenalineRush : Hediff_Adrenaline
         }
     }
 
-    protected virtual float SeverityGainFactor
+    private float SeverityGainFactor
     {
         get
         {
@@ -44,13 +44,13 @@ public class Hediff_AdrenalineRush : Hediff_Adrenaline
         }
     }
 
-    protected virtual float SeverityLossFactor => ((1 / Mathf.Max(1,
-                                                       Mathf.Sqrt(EffectiveTotalThreatSignificance) +
-                                                       (recentPainFelt *
-                                                        Props.severityGainFactorOffsetPerRecentPainFelt)))
-                                                   + Mathf.Max(0,
-                                                       1 - AdrenalineTracker.AdrenalineProductionFactor)) *
-                                                  ExtraRaceProps.adrenalineLossFactor;
+    private float SeverityLossFactor => ((1 / Mathf.Max(1,
+                                             Mathf.Sqrt(EffectiveTotalThreatSignificance) +
+                                             (recentPainFelt *
+                                              Props.severityGainFactorOffsetPerRecentPainFelt)))
+                                         + Mathf.Max(0,
+                                             1 - AdrenalineTracker.AdrenalineProductionFactor)) *
+                                        ExtraRaceProps.adrenalineLossFactor;
 
     protected override void UpdateSeverity()
     {
@@ -77,7 +77,7 @@ public class Hediff_AdrenalineRush : Hediff_Adrenaline
         AdrenalineTracker.AdrenalineProduced += SeverityGainFactor * SeverityUpdateIntervalTicks;
     }
 
-    protected virtual void UpdateTotalThreatSignificance()
+    private void UpdateTotalThreatSignificance()
     {
         totalThreatSignificance = AdrenalineUtility.GetPerceivedThreatsFor(pawn)
             .Sum(t => t.PerceivedThreatSignificanceFor(pawn));

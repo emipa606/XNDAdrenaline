@@ -1,5 +1,8 @@
 # Changelog for XNDAdrenaline
 
+1.6.3 - Fixed issue with Anomaly Unnatural Corpses, thanks Kenolla
+
+
 1.6.2 - Fixed wrong author name
 
 

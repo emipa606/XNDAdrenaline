@@ -6,4 +6,31 @@
     <BuildType Name="Release" />
   </Configurations>
   <Project Path="Adrenaline/Adrenaline.csproj" />
+  <Folder Name="/XML/1.6/Defs/Tutor/">
+    <File Path="../1.6/Defs/Tutor/Concepts_NotedOpportunistic.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/HediffDefs/">
+    <File Path="../1.6/Defs/HediffDefs/Hediffs_Global_Misc.xml" />
+  </Folder>
+  <Folder Name="/XML/Languages/English/Keyed/">
+    <File Path="../Languages/English/Keyed/Keys.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/ThingDefs_Misc/">
+    <File Path="../1.6/Defs/ThingDefs_Misc/Adrenaline.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/ThoughtDefs/">
+    <File Path="../1.6/Defs/ThoughtDefs/Thoughts_Situational.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/TraitDefs/">
+    <File Path="../1.6/Defs/TraitDefs/Traits_Singular.xml" />
+  </Folder>
+  <Folder Name="/XML/Patches/">
+    <File Path="../Patches/HediffGiverSets.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/Stats/">
+    <File Path="../1.6/Defs/Stats/Stats_Pawns_Combat.xml" />
+  </Folder>
+  <Folder Name="/XML/About/">
+    <File Path="../About/about.xml" />
+  </Folder>
 </Solution>

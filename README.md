@@ -62,4 +62,4 @@ Various members of the discord and forums for playtesting and contributing their
 
  
 
-[![Image](https://img.shields.io/github/v/release/emipa606/XNDAdrenaline?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2037728879) | tags: drug, enhancements
+[![Image](https://img.shields.io/github/v/release/emipa606/XNDAdrenaline?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2037728879) | enhancements, drug

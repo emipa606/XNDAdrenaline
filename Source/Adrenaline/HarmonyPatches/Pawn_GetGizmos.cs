@@ -60,5 +60,7 @@ public static class Pawn_GetGizmos
             adrenalineGizmo.action = () => adrenalineThings[0].Ingested(__instance, 0);
             localResult.Add(adrenalineGizmo);
         }
+
+        __result = localResult;
     }
 }

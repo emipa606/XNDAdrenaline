@@ -14,36 +14,34 @@ public class ExtendedRaceProperties : DefModExtension
     public readonly float adrenalineLossFactor = 1;
     public readonly HediffDef adrenalineRushHediff = A_HediffDefOf.Adrenaline;
 
-    [Unsaved] private List<ThingDef> _relevantConsumables;
-
-    [Unsaved] private List<ThingDef> _relevantConsumablesDowned;
-
     public bool HasAdrenaline => adrenalineRushHediff != null &&
                                  (adrenalineGainFactorNatural > 0 || adrenalineGainFactorArtificial > 0);
 
+    [field: Unsaved]
     public List<ThingDef> RelevantConsumables
     {
         get
         {
-            _relevantConsumables ??= DefDatabase<ThingDef>.AllDefs.Where(t =>
+            field ??= DefDatabase<ThingDef>.AllDefs.Where(t =>
                 t.IsDrug && t.ingestible.outcomeDoers is { } outcomeDoers &&
                 outcomeDoers.Any(o =>
                     o is IngestionOutcomeDoer_Adrenaline adrenalineOutcome &&
                     adrenalineOutcome.hediffDef == adrenalineRushHediff)).ToList();
 
-            return _relevantConsumables;
+            return field;
         }
     }
 
+    [field: Unsaved]
     public List<ThingDef> RelevantConsumablesDowned
     {
         get
         {
-            _relevantConsumablesDowned ??= RelevantConsumables.Where(t =>
+            field ??= RelevantConsumables.Where(t =>
                 (t.GetModExtension<ThingDefExtension>() ?? ThingDefExtension.defaultValues)
                 .ingestibleWhenDowned).ToList();
 
-            return _relevantConsumablesDowned;
+            return field;
         }
     }
 
