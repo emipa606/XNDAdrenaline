@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <TraitDef>
+    <defName>AdrenalineJunkie</defName>
+    <commonality>1.1</commonality>
+    <degreeDatas>
+      <li>
+        <label>adrenaline junkie</label>
+        <description>{PAWN_nameDef} lives for the thrill of the action. {PAWN_pronoun} gets a rush from the adrenaline that flows throughout {PAWN_possessive} veins.</description>
+      </li>
+    </degreeDatas>
+    <conflictingTraits>
+      <li>CoolHeaded</li>
+    </conflictingTraits>
+  </TraitDef>
+  <TraitDef>
+    <defName>CoolHeaded</defName>
+    <commonality>1</commonality>
+    <degreeDatas>
+      <li>
+        <label>cool-headed</label>
+        <description>{PAWN_nameDef} tends to keep calm in heated situations and generally doesn't get an adrenaline rush from them.</description>
+        <statOffsets>
+          <AdrenalineProduction>-1</AdrenalineProduction>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+    <conflictingTraits>
+      <li>AdrenalineJunkie</li>
+    </conflictingTraits>
+  </TraitDef>
+</Defs>

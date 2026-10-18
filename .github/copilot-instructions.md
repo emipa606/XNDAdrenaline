@@ -2,49 +2,47 @@
 
 ## Mod Overview and Purpose
 
-The [XND] Adrenaline! (Continued) mod enhances the combat experience in RimWorld by introducing an adrenaline system for biological pawns. The mod adds realism and excitement by making pawns experience adrenaline surges during fight-or-flight situations. This system ensures that all biological entities, from colonists to wildlife, can be influenced by adrenaline, heightening the immersive war-time experience in the game.
+**[XND] Adrenaline! (Continued)** is a RimWorld mod designed to enhance the combat experience by introducing adrenaline rush mechanics for biological pawns. The mod enriches immersion by simulating how adrenaline affects consciousness, movement, melee damage, and pain tolerance. After the adrenaline rush, pawns may experience crashes, simulating fatigue. This mod not only intensifies the combat situations but also allows for unique behavioral traits like "adrenaline junkies" and "cool-headed" individuals, adding layers to pawn interaction and strategy.
 
 ## Key Features and Systems
 
-- **Adrenaline System:** Pawns gain boosts in consciousness, movement, and melee damage during adrenaline surges, while experiencing reduced pain.
-- **Adrenaline Crashes:** Prolonged adrenaline surges can lead to crashes, causing brief periods of lethargy in pawns.
-- **Personality Traits:** Pawns can be adrenaline junkies who thrive intensely, or cool-headed individuals who remain unaffected by high-pressure scenarios.
-- **Adrenaline Syringes:** Downed pawns with such syringes may self-inject to recover momentarily, adding strategic depth to combat. Raiders can utilize syringes too.
-- **Mod Configuration:** Users can customize their experience by toggling features such as natural adrenaline gains, animal-specific adrenaline, crashes, and raider behaviors.
-- **Synthesis and Compatibility:** Adrenaline can be crafted at drug labs, and mods like Smart Medicine and Combat Extended enhance the experience further.
+- **Adrenaline Rush Mechanic**: Biological pawns receive boosts in consciousness, movement, and melee damage when engaged in intense situations. This feature simulates the fight-or-flight response.
+- **Adrenaline Crash**: Following a period of enhanced performance, pawns experience a duration of lethargy simulating fatigue post-rush.
+- **Behavioral Traits**: Some pawns enjoy the thrill (adrenaline junkies), while others remain unaffected (cool-headed).
+- **Adrenaline Syringe**: Items that can revive downed pawns, providing an additional strategy layer in battles.
+- **Mod Settings Customization**: Allows players to disable specific mod components like natural gains, crashes, or raider capabilities.
+- **Compatibility**: Works seamlessly with alien races and modded animals. Suggested for use with "Smart Medicine" and "Combat Extended" mods.
 
 ## Coding Patterns and Conventions
 
-- **Naming Conventions:** Use PascalCase for types and methods (`CompAdrenalineTracker`, `AdrenalineProduced`), and camelCase for local variables and parameters.
-- **Modular Structure:** Keep separate classes and definitions for components, properties, patches, and XML definitions.
-- **Consistent Indentation:** Ensure consistent indentation across all code files for readability.
-- **Commenting:** Code should be sufficiently commented to describe method functionalities and purpose.
+### C# Coding Patterns
 
-## XML Integration
+- **Modular Codebase**: Separation of functionality into different classes, e.g., `AdrenalineUtility`, `CompAdrenalineTracker`.
+- **Adoption of Harmony Library**: Utilized for patching methods without altering original game code.
+- **Naming Conventions**: Descriptive and consistent names for classes, methods (e.g., `CanGetAdrenaline`, `AdrenalineProduced`).
+- **Encapsulation**: Proper use of private, public, and protected access modifiers to control data access.
 
-XML files structure the configuration of various game elements;
+### XML Integration
 
-- Define **HediffDefs** for pawn state changes in `Hediffs_Global_Misc.xml`.
-- Use **StatDefs** to adjust combat statistics in `Stats_Pawns_Combat.xml`.
-- Create or modify **ThingDefs** for items like adrenaline syringes in `Adrenaline.xml`.
-- Establish **ThoughtDefs** for mood effects tied to traits in `Thoughts_Situational.xml`.
-- Set up **TraitDefs** that handle pawn characteristics in `Traits_Singular.xml`.
+- **Defs Usage**: `HediffDef`, `StatDef`, `ThingDef`, `ThoughtDef`, and `TraitDef` integrated in various XML files for defining new data elements.
+- **Structured XML Files**: Organized as per functionalities (e.g., `Hediffs_Global_Misc.xml`, `Stats_Pawns_Combat.xml`) to ensure maintainability and clarity.
 
 ## Harmony Patching
 
-- The mod uses the Harmony Patch Library for runtime modifications without altering the core game code.
-- Ensure all patches respect the Harmony standards for prefix, postfix, and transpiler patches.
-- Review patches in `CompAdrenalineTracker.cs` to see how existing game methods are extended seamlessly.
+- Making use of the **Harmony Patch Library** for non-intrusive patches.
+- Ensure that any patches are well-documented within the source code to maintain clarity.
+- Typical usage involves prefix, postfix, or transpiler methods depending on the needed instruction modifications.
 
 ## Suggestions for Copilot
 
-- **Intelligent Suggestions:** Suggest context-specific method and class usages, drawing from existing patterns in `CompAdrenalineTracker.cs` and `Adrenaline.cs`.
-- **Auto-generate XML:** Recommend baseline XML structure for new Defs when creating features like additional traits or item modifications.
-- **Error Handlers:** Propose best practices for exception handling in C# files that integrate with the Harmony library.
-- **Enhance Mod Compatibility:** Suggest code structures that integrate smoothly with other popular mods.
-- **Optimize Settings Interface:** Provide suggestions to simplify settings modifications in `DoSettingsWindowContents`.
+- **Autocompletion**: Enhance efficiency by suggesting code structures based on frequent patterns in similar mods, like method signatures in `AdrenalineUtility`.
+- **XML Schema**: Offer suggestions for XML schema definitions based on existing RimWorld mods.
+- **Harmony Patch Patterns**: Propose common patching practices, ensuring compatibility across different game updates.
+- **Code Comments**: Auto-generate code comments based on function documentation to ensure code clarity.
+- **Refactoring Suggestions**: Propose potential code refactors to improve performance or readability.
+- **Testing Suggestion**: Recommend automated test practices for both XML and C# components to ensure stability when integrated into gameplay.
 
-These instructions for GitHub Copilot aim to optimize the process of contributing to or customizing [XND] Adrenaline! (Continued), aligning with the existing structures and enhancing user experience effectively.
+By following these practices and utilizing Copilot's capabilities, the development and maintenance of the [XND] Adrenaline! (Continued) mod can be more efficient, allowing a streamlined modding experience that positively impacts gameplay.
 
 ## Project Solution Guidelines
 - Relevant mod XML files are included as Solution Items under the solution folder named XML, these can be read and modified from within the solution.
@@ -58,4 +56,6 @@ These instructions for GitHub Copilot aim to optimize the process of contributin
 ## Hard rules (must follow)
 - Do NOT run commands that modify the repo (no git commit, git apply, dotnet format) unless explicitly asked.
 - Prefer minimal reads: read only the smallest code region needed (around the suspicious lines).
+- When mentioning SonarQube issues, automatically use the SonarQube MCP service to fetch and address issues instead of making inferred fixes without querying SonarQube first.
+- When mentioning the rimworld log, automatically use the Rimworld MCP service to fetch the log.
 

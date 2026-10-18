@@ -32,7 +32,7 @@ public class MapComponent_AdrenalineTracker : MapComponent
         if (Find.TickManager.TicksGame % AllPotentialHostileThingsUpdateInterval == 0)
         {
             allPotentialHostileThings =
-                [..map.mapPawns.AllPawnsSpawned.ToArray().Concat(cachedPotentialHostileThings)];
+                [.. map.mapPawns.AllPawnsSpawned.ToArray().Concat(cachedPotentialHostileThings)];
         }
     }
 
@@ -52,12 +52,9 @@ public class MapComponent_AdrenalineTracker : MapComponent
     private void resetCachedPotentialHostileThings()
     {
         cachedPotentialHostileThings.Clear();
-        foreach (var thing in map.listerThings.AllThings)
+        foreach (var thing in map.listerThings.AllThings.Where(t => t.IsPotentialPerceivableThreat()))
         {
-            if (thing.IsPotentialPerceivableThreat())
-            {
-                TryAddToCache(thing);
-            }
+            TryAddToCache(thing);
         }
     }
 }

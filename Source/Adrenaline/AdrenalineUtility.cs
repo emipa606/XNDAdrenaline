@@ -206,8 +206,7 @@ public static class AdrenalineUtility
                 threatSignificance += t.EffectiveCombatPower() / pawn.EffectiveCombatPower();
 
                 // If threat is either manning a thing or being manned, halve the significance to reduce overlap
-                if (p != null && p.MannedThing() != null || thingWithComps != null &&
-                    thingWithComps.GetComp<CompMannable>() is { MannedNow: true })
+                if (p?.MannedThing() != null || thingWithComps?.GetComp<CompMannable>() is { MannedNow: true })
                 {
                     threatSignificance /= 2;
                 }
@@ -229,23 +228,25 @@ public static class AdrenalineUtility
                 // Pawn
                 case Pawn p:
                 {
-                    float combatPower;
+                    var combatPower = p.kindDef.combatPower;
 
                     // If the pawn is a colonist, return the maximum of the kindDef's combatPower rating or the points per colonist based on the wealth of the player's wealthiest settlement
-                    if (p.IsColonist)
+                    if (!p.IsColonist)
                     {
-                        var pawnIncidentTarget = Current.Game.World.worldObjects.Settlements
-                            .Where(s => s.HasMap && s.Map.IsPlayerHome).MaxBy(s => s.Map.PlayerWealthForStoryteller)
-                            .Map;
-                        combatPower =
-                            Mathf.Max(
-                                pointsPerColonistByWealthCurve.Evaluate(pawnIncidentTarget.PlayerWealthForStoryteller),
-                                p.kindDef.combatPower);
+                        return combatPower * p.health.summaryHealth.SummaryHealthPercent *
+                               p.ageTracker.CurLifeStage.bodySizeFactor;
                     }
 
-                    else
+                    var pawnIncidentTarget = Current.Game.World.worldObjects.Settlements
+                        .Where(s => s.HasMap && s.Map.IsPlayerHome).MaxBy(s => s.Map.PlayerWealthForStoryteller)
+                        ?.Map;
+                    if (pawnIncidentTarget != null)
                     {
-                        combatPower = p.kindDef.combatPower;
+                        combatPower =
+                            Mathf.Max(
+                                pointsPerColonistByWealthCurve.Evaluate(pawnIncidentTarget
+                                    .PlayerWealthForStoryteller),
+                                p.kindDef.combatPower);
                     }
 
                     return combatPower * p.health.summaryHealth.SummaryHealthPercent *
